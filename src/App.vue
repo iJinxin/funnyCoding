@@ -11,15 +11,14 @@ export default {
 </script>
 
 <style module lang="scss">
-/*@import "assets/style/index.scss";*/
   .app {
     position: relative;
     margin: 0;
     line-height: 1.5;
-    color: $darkish;
+    font-size: 14px;
+    color: $default;
     background: #fff;
     min-width: $container_width;
-    height: 100%;
-    box-sizing: border-box;
+    min-height: 100%;
   }
 </style>

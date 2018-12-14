@@ -23,10 +23,11 @@ export default {
     return {
       navItems: [
         { index: '/', title: '首页' },
-        { index: '/live-course', title: '直播课程' },
-        { index: '/training-course', title: '培训课程' },
-        { index: '/data-center', title: '资料中心' },
-        { index: '/teachers', title: '名师风采' },
+        { index: '/task', title: '任务' },
+        { index: '/diary', title: '日记' },
+        { index: '/book', title: '阅读' },
+        { index: '/music', title: '音乐' },
+        { index: '/movie', title: '电影' },
       ],
     };
   },
@@ -44,10 +45,8 @@ export default {
   }
 
   .nav_item {
-    font-size: 16px;
-    padding: 0 40px;
-    font-weight: 600;
-    height: 74px !important;
-    line-height: 74px !important;
+    padding: 0 20px;
+    height: 50px !important;
+    line-height: 50px !important;
   }
 </style>

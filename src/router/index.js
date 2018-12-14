@@ -6,6 +6,11 @@ Vue.use(Router);
 
 const Index = r => require.ensure([], () => r(require('@/views/index')), 'Index');
 const Home = r => require.ensure([], () => r(require('@/views/home/Home')), 'Home');
+const Task = r => require.ensure([], () => r(require('@/views/task/Task')), 'Task');
+const Diary = r => require.ensure([], () => r(require('@/views/diary/Diary')), 'Diary');
+const Book = r => require.ensure([], () => r(require('@/views/book/Book')), 'Book');
+const Music = r => require.ensure([], () => r(require('@/views/music/Music')), 'Music');
+const Movie = r => require.ensure([], () => r(require('@/views/movie/Movie')), 'Movie');
 const LiveCourse = r => require.ensure([], () => r(require('@/views/live-course/LiveCourse')), 'LiveCourse');
 const LiveCourseRoom = r => require.ensure([], () => r(require('@/views/live-course/LiveCourseRoom')), 'LiveCourseRoom');
 const LiveCourseDetail = r => require.ensure([], () => r(require('@/views/live-course/LiveCourseDetail')), 'LiveCourseDetail');
@@ -24,6 +29,11 @@ export default new Router({
       component: Index,
       children: [
         { path: '/', name: 'Home', component: Home },
+        { path: '/task', name: 'Task', component: Task },
+        { path: '/diary', name: 'Diary', component: Diary },
+        { path: '/book', name: 'Book', component: Book },
+        { path: '/music', name: 'Music', component: Music },
+        { path: '/movie', name: 'Movie', component: Movie },
         { path: '/live-course', name: 'LiveCourse', component: LiveCourse },
         { path: '/live-course-detail', name: 'LiveCourseDetail', component: LiveCourseDetail },
         { path: '/training-course', name: 'TrainingCourse', component: TrainingCourse },

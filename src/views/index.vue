@@ -1,10 +1,12 @@
 <template>
-  <div :class="$style.container">
-    <header :class="$style.el_header">
+  <div class="app-wrapper layout-v1">
+    <header class="app-header">
       <v-header/>
     </header>
-    <router-view/>
-    <footer :class="$style.footer">
+    <main class="app-main">
+      <router-view/>
+    </main>
+    <footer class="app-footer">
       <v-footer/>
     </footer>
   </div>
@@ -31,23 +33,22 @@ export default {
 };
 </script>
 
-<style module lang="scss">
-  .container {
-    position: relative;
-    min-height: 100%;
+<style lang="scss">
+  .app-wrapper {
     padding-bottom: $footer_height;
     box-sizing: border-box;
-  }
-
-  .el_header {
-    border-bottom: 1px solid #d8d8d8;
-  }
-
-  .footer {
-    height: $footer_height;
-    width: 100%;
-    background: $darkish;
-    position: absolute;
-    bottom: 0;
+    .app-header {
+      height: 50px;
+      width: 100%;
+      position: relative;
+      z-index: 1000;
+    }
+    .app-footer {
+      height: $footer_height;
+      width: 100%;
+      background: $darkish;
+      position: absolute;
+      bottom: 0;
+    }
   }
 </style>
