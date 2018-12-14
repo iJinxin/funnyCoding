@@ -1,0 +1,81 @@
+// ----------------------------------- //
+// 处理css reset ， 定义常用 css class
+// ----------------------------------- //
+
+// ====== reset ====== //
+.reset_ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+// 重置继承的line-height
+.normal_lineheight {
+  line-height: normal;
+}
+
+// ====== Normal Class ====== //
+.main-content {
+  flex: 1;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: -webkit-box;
+  display: -ms-flex;
+  display: flex;
+  flex-direction: column;
+}
+// 文字过长时显示...
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 清除浮动
+.clearfix::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+// 默认滚动条
+.default-scrollbar {
+  width: 100%;
+  height: 100%;
+}
+.default-scrollbar__wrap.el-scrollbar__wrap {
+  overflow-y: scroll;
+  overflow-x: unset;
+}
+
+// 自定义列表 dl-dt-dd
+.dl-menu {
+  margin: 0;
+  line-height: 50px;
+  .dl-menu__dt {
+    float: left;
+    padding: 0 20px;
+    font-size: 14px;
+  }
+  .dl-menu__dd {
+    margin: 0;
+    padding: 0 20px;
+    float: left;
+    position: relative;
+    font-size: 14px;
+  }
+}
+
+// pointer
+.pointer {
+  cursor: pointer !important;
+}
+
+// flex定位，兼容性写法
+.flex {
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: -webkit-box;
+  display: -ms-flex;
+  display: flex;
+}

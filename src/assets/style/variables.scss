@@ -1,0 +1,31 @@
+// ============================ //
+// ========== css变量 ========== //
+// ============================ //
+
+// ====== color ======
+$white: #fff !default;
+$dark: #000 !default;         // 深黑，标题用
+$darkish: #4A4A4A !default;   // 浅黑，文字默认颜色
+$gray:  #9B9B9B !default;     // 灰
+$lightgray: #F9F9F9 !default; // 浅灰
+$lightgray2: #F6F6F6 !default;
+$blue: #3CB1FF !default;
+$babyblue:  #23B7FF !default;
+$yellow: #FFC367 !default;
+$green: #28DA99 !default;
+$pink: #FF7477 !default;
+
+// ====== Button Color ====== //
+// primary-蓝色，success-绿色，warning-黄色，danger-红色
+$button-colors: (
+  primary: (base: $babyblue),
+  success: (base: $green),
+  warning: (base: $yellow)
+);
+
+
+// ====== Container ====== //
+$container_width: 1200px !default;
+
+// ====== Footer ======
+$footer_height: 126px !default;

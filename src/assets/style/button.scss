@@ -1,0 +1,41 @@
+// ====== 参考 el-button 定制 ====== //
+
+// ==== 初始化 ==== //
+button{
+  border: 0;
+  outline: none;
+  &:hover, &:focus, &:active {
+    outline: none;
+  }
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+// ==== 颜色 ====
+@each $name, $color in $button-colors {
+  button.#{$name} {
+    background: map-get($color, base);
+    color: #fff
+  }
+}
+
+// 尺寸
+// large, medium, small, mini
+button.large {
+  padding: 8px 24px;
+  font-size: 18px;
+}
+
+button.medium {
+
+}
+
+button.small {
+  padding: 5px 12px;
+  font-size: 14px;
+}
+
+button.mini {
+
+}
+
