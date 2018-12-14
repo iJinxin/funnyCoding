@@ -36,17 +36,9 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
-      'adapter': path.resolve(__dirname, '../src/plugins/webrtc/adapter.js'),
-      'janus': path.resolve(__dirname, '../src/plugins/webrtc/janus.js')
+      '@': resolve('src')
     }
   },
-  plugins: [
-    new webpack.ProvidePlugin({
-      'adapter': 'adapter',
-      'Janus': 'janus'
-    })
-  ],
   module: {
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),
