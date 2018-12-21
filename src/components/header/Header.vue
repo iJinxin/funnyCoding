@@ -2,7 +2,7 @@
   <div class="header_inner display_flex">
     <div class="header_control display_flex">
       <div class="header_control_menu display_flex justify-content__center align-items__center pointer">
-        <i class="iconfont icon-caidan"></i>
+        <i class="iconfont ali-icon-caidan"></i>
       </div>
       <div class="header_control_home display_flex justify-content__center align-items__center pointer">
         <span class="home_title">主页</span>

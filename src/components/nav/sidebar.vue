@@ -8,18 +8,21 @@
         :collapse="isCollapse"
         @open="handleOpen"
         @close="handleClose"
-        text-color="#000"
-        active-text-color="#23B7FF">
+        text-color="#b4bcc8">
         <template v-for="item in navItems">
-          <template v-if="item.subItem">
-            <el-submenu :key="item.index">
-              <template v-for="sub in item.subItem">
-                <el-menu-item :index="sub.index" :key="sub.index">{{sub.title}}</el-menu-item>
+          <template v-if="item.subItems">
+            <el-submenu :index="item.index" :key="item.index">
+              <template slot="title">
+                <i class="iconfont" v-bind:class="item.icon"></i>
+                <span>{{item.name}}</span>
+              </template>
+              <template v-for="sub in item.subItems">
+                <el-menu-item :index="sub.index" :key="sub.index">{{sub.name}}</el-menu-item>
               </template>
             </el-submenu>
           </template>
           <template v-else>
-            <el-menu-item :index="item.index" :key="item.index">{{item.title}}</el-menu-item>
+            <el-menu-item :index="item.index" :key="item.index">{{item.name}}</el-menu-item>
           </template>
         </template>
       </el-menu>
@@ -27,23 +30,19 @@
   </nav>
 </template>
 <script>
+import Navigations from '@/assets/data/navigator.json';
+
 export default {
   name: 'sidebar',
   data() {
     return {
-      navItems: [
-        { index: '/', title: '首页' },
-        { index: '/task', title: '任务' },
-        { index: '/diary', title: '日记' },
-        { index: '/book', title: '阅读' },
-        { index: '/music', title: '音乐' },
-        { index: '/movie', title: '电影' },
-      ],
+      navItems: Navigations.navItems,
       isCollapse: false,
       barHeight: '',
     };
   },
   mounted() {
+    console.log(this.navItems);
     this.barHeight = `${document.documentElement.clientHeight}`;
     this.$refs.sidebar.style.height = `${this.barHeight - 50}px`;
     window.onresize = () => {
@@ -67,8 +66,22 @@ export default {
   z-index: 10;
   left: 0;
   top: 50px;
+  background: #364150;
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
+  }
+  .el-menu {
+    border: 0;
+    background: transparent;
+  }
+  .el-menu-item,
+  .el-submenu__title {
+    height: 46px;
+    line-height: 46px;
+    border-top: 1px solid #3d4957;
+    &:hover, &:focus {
+      background: #2c3542;
+    }
   }
 }
 </style>

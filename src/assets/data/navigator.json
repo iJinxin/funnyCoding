@@ -1,0 +1,50 @@
+{
+  "navItems": [
+    {
+      "index": "utils",
+      "icon": "",
+      "name": "工具",
+      "subItems": [
+        {
+          "index": "calculator",
+          "icon": "",
+          "name": "计算器"
+        }
+      ]
+    },
+    {
+      "index": "note",
+      "icon": "",
+      "name": "笔记",
+      "subItems": [
+        {
+          "index": "dairy",
+          "icon": "",
+          "name": "日记"
+        },
+        {
+          "index": "todo",
+          "icon": "",
+          "name": "待办"
+        }
+      ]
+    },
+    {
+      "index": "visualization",
+      "icon": "",
+      "name": "可视化",
+      "subItems": [
+        {
+          "index": "three",
+          "icon": "",
+          "name": "three.js"
+        }
+      ]
+    },
+    {
+      "index": "about",
+      "icon": "",
+      "name": "关于"
+    }
+  ]
+}
