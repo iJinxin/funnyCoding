@@ -7,6 +7,7 @@ export default {
   testPutException: 'home',
   testPost: 'home/users/',
   testGet: 'home/users/{username}',
-  testPut: 'home/users/{username}'
-}
+  testPut: 'home/users/{username}',
+  testExample: 'api/example',
+};
 
