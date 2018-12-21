@@ -7,11 +7,6 @@
       <span>Copyright&copy;2018 - 2019 ALL Rights Reserved</span>
     </div>
     <div :class="$style.compony">
-      <span>深圳市捷视飞通科技股份有限公司&nbsp;&nbsp;版权所有&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-      <a>站点地图&nbsp;&nbsp;|&nbsp;&nbsp;</a>
-      <a>问题反馈&nbsp;&nbsp;|&nbsp;&nbsp;</a>
-      <a>关于我们&nbsp;&nbsp;|&nbsp;&nbsp;</a>
-      <a>联系我们</a>
     </div>
   </section>
 </template>

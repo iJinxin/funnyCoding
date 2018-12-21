@@ -28,4 +28,5 @@ npm run dev
 - [axios](https://www.kancloud.cn/yunye/axios/234845)
 
 ## plan
+https://flaviocopes.com/sample-app-ideas/
 
