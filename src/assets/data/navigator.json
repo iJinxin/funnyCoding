@@ -2,48 +2,48 @@
   "navItems": [
     {
       "index": "utils",
-      "icon": "",
+      "icon": "ali-icon-ToolsIcon",
       "name": "工具",
       "subItems": [
         {
           "index": "calculator",
-          "icon": "",
+          "icon": "ali-icon-calculator",
           "name": "计算器"
         }
       ]
     },
     {
       "index": "note",
-      "icon": "",
+      "icon": "ali-icon-note",
       "name": "笔记",
       "subItems": [
         {
-          "index": "dairy",
-          "icon": "",
+          "index": "diary",
+          "icon": "ali-icon-diary",
           "name": "日记"
         },
         {
-          "index": "todo",
-          "icon": "",
+          "index": "task",
+          "icon": "ali-icon-todo",
           "name": "待办"
         }
       ]
     },
     {
       "index": "visualization",
-      "icon": "",
+      "icon": "ali-icon-Visualizationanalys",
       "name": "可视化",
       "subItems": [
         {
-          "index": "three",
-          "icon": "",
-          "name": "three.js"
+          "index": "visualization",
+          "icon": "ali-icon-Visualizationanalys",
+          "name": "可视化"
         }
       ]
     },
     {
       "index": "about",
-      "icon": "",
+      "icon": "ali-icon-about",
       "name": "关于"
     }
   ]

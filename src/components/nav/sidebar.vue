@@ -14,12 +14,18 @@
                 <span>{{item.name}}</span>
               </template>
               <template v-for="sub in item.subItems">
-                <el-menu-item :index="sub.index" :key="sub.index">{{sub.name}}</el-menu-item>
+                <el-menu-item :index="sub.index" :key="sub.index">
+                  <i class="iconfont" v-bind:class="sub.icon"></i>
+                  {{sub.name}}
+                </el-menu-item>
               </template>
             </el-submenu>
           </template>
           <template v-else>
-            <el-menu-item :index="item.index" :key="item.index">{{item.name}}</el-menu-item>
+            <el-menu-item :index="item.index" :key="item.index">
+              <i class="iconfont" v-bind:class="item.icon"></i>
+              {{item.name}}
+            </el-menu-item>
           </template>
         </template>
       </el-menu>
@@ -84,9 +90,9 @@ export default {
   .el-menu {
     border: 0;
     background: transparent;
-    &>:first-child {
-      border: 0;
-    }
+  }
+  .el-menu-vertical-demo>:first-child {
+    border: 0;
   }
   .el-menu-item,
   .el-submenu__title {
@@ -98,6 +104,9 @@ export default {
   }
   .el-menu-item, .el-submenu {
     border-top: 1px solid #3d4957;
+    > i {
+      vertical-align: unset;
+    }
   }
 }
 </style>
