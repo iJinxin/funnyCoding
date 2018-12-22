@@ -7,26 +7,25 @@
 
 <script>
 import sidebar from '@/components/nav/sidebar';
+
 export default {
   name: 'app',
   data() {
-    return {}
+    return {};
   },
   components: {
-    sidebar
-  }
+    sidebar,
+  },
 };
 </script>
 
 <style module lang="scss">
   .app {
     position: relative;
-    margin: 0;
     line-height: 1.5;
     font-size: 14px;
     color: $default;
     background: #fff;
-    min-width: $container_width;
     min-height: 100%;
   }
 </style>

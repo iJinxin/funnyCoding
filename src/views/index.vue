@@ -46,7 +46,7 @@ export default {
     .app-footer {
       height: $footer_height;
       width: 100%;
-      background: $darkish;
+      background: $dark;
       position: absolute;
       bottom: 0;
     }

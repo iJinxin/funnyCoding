@@ -1,9 +1,10 @@
 <template>
-  <nav ref="sidebar" class="nav">
+  <nav ref="sidebar" class="global-nav">
     <el-scrollbar class="default-scrollbar" wrap-class="default-scrollbar__wrap">
       <el-menu
         class="el-menu-vertical-demo"
         mode="vertical"
+        @select="onSelect"
         router
         text-color="#b4bcc8">
         <template v-for="item in navItems">
@@ -64,6 +65,9 @@ export default {
         this.fadeOut();
       }
     },
+    onSelect() {
+      this.fadeOut();
+    },
     fadeIn() {
       this.showBar = true;
       this.$refs.sidebar.style.transform = 'translateX(200px)';
@@ -75,10 +79,13 @@ export default {
       this.$refs.sidebar.style.transition = 'all .3s';
     },
   },
+  destroyed() {
+    SubscribeService.unsubscribe(message.TOGGLE_MENU);
+  },
 };
 </script>
 <style lang="scss">
-.nav {
+.global-nav {
   position: absolute;
   z-index: 10;
   left: -200px;

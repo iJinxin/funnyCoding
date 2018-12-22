@@ -1,13 +1,7 @@
 <template>
-  <section :class="$style.footer_inner">
-    <div :class="$style.logo">
-      <img>
-    </div>
-    <div :class="$style.copyright">
-      <span>Copyright&copy;2018 - 2019 ALL Rights Reserved</span>
-    </div>
-    <div :class="$style.compony">
-    </div>
+  <section class="footer_inner display_flex justify-content__center align-items__center">
+    <span class="copyright">Copyright &copy; 2018 - 2019 </span>
+    <a class="author-link" href="https://github.com/iJinxin" target="_blank">Able Jin</a>
   </section>
 </template>
 
@@ -17,32 +11,20 @@ export default {
 };
 </script>
 
-<style module lang="scss">
+<style lang="scss">
   .footer_inner {
     height: 100%;
-    display: -ms-flexbox;
-    display: -moz-box;
-    display: -webkit-box;
-    display: -ms-flex;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .logo {
-    height: 35px;
-    margin-top: 6px;
-  }
-
-  .copyright {
-    font-size: 12px;
-    color: $gray;
-    margin-top: 12px;
-  }
-
-  .compony {
-    font-size: 12px;
-    color: $gray;
-    margin-top: 12px;
+    .copyright {
+      color: $gray;
+    }
+    .author-link {
+      color: $gray;
+      text-decoration: none;
+      padding-left: 5px;
+      &:hover {
+        text-decoration: underline;
+        color: $babyblue;
+      }
+    }
   }
 </style>

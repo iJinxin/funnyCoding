@@ -4,7 +4,7 @@
       <div class="header_control_menu display_flex justify-content__center align-items__center pointer" @click="toggleMenu">
         <i class="iconfont ali-icon-caidan"></i>
       </div>
-      <div class="header_control_home display_flex justify-content__center align-items__center pointer">
+      <div class="header_control_home display_flex justify-content__center align-items__center pointer" @click="backHome">
         <span class="home_title">主页</span>
       </div>
     </div>
@@ -22,6 +22,9 @@ export default {
   methods: {
     toggleMenu() {
       SubscribeService.publish(message.TOGGLE_MENU);
+    },
+    backHome() {
+      this.$router.push({ name: 'Home' });
     },
   },
 };
