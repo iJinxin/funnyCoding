@@ -31,6 +31,7 @@
 </template>
 <script>
 import Navigations from '@/assets/data/navigator.json';
+import SubscribeService, { message } from '@/service/subscribe/subscribeService';
 
 export default {
   name: 'sidebar',
@@ -40,6 +41,9 @@ export default {
       isCollapse: false,
       barHeight: '',
     };
+  },
+  created() {
+    SubscribeService.subscribe(message.TOGGLE_MENU, this.toggleMenu);
   },
   mounted() {
     console.log(this.navItems);
@@ -56,6 +60,9 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key);
+    },
+    toggleMenu() {
+      console.log('toggle');
     },
   },
 };
