@@ -5,9 +5,6 @@
         class="el-menu-vertical-demo"
         mode="vertical"
         router
-        :collapse="isCollapse"
-        @open="handleOpen"
-        @close="handleClose"
         text-color="#b4bcc8">
         <template v-for="item in navItems">
           <template v-if="item.subItems">
@@ -38,15 +35,14 @@ export default {
   data() {
     return {
       navItems: Navigations.navItems,
-      isCollapse: false,
       barHeight: '',
+      showBar: false,
     };
   },
   created() {
     SubscribeService.subscribe(message.TOGGLE_MENU, this.toggleMenu);
   },
   mounted() {
-    console.log(this.navItems);
     this.barHeight = `${document.documentElement.clientHeight}`;
     this.$refs.sidebar.style.height = `${this.barHeight - 50}px`;
     window.onresize = () => {
@@ -55,14 +51,22 @@ export default {
     };
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key);
-    },
-    handleClose(key, keyPath) {
-      console.log(key);
-    },
     toggleMenu() {
-      console.log('toggle');
+      if (!this.showBar) {
+        this.fadeIn();
+      } else {
+        this.fadeOut();
+      }
+    },
+    fadeIn() {
+      this.showBar = true;
+      this.$refs.sidebar.style.transform = 'translateX(200px)';
+      this.$refs.sidebar.style.transition = 'all .3s';
+    },
+    fadeOut() {
+      this.showBar = false;
+      this.$refs.sidebar.style.transform = 'translateX(0)';
+      this.$refs.sidebar.style.transition = 'all .3s';
     },
   },
 };
@@ -71,24 +75,29 @@ export default {
 .nav {
   position: absolute;
   z-index: 10;
-  left: 0;
+  left: -200px;
   top: 50px;
-  background: #364150;
+  background: $deepGray;
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
   }
   .el-menu {
     border: 0;
     background: transparent;
+    &>:first-child {
+      border: 0;
+    }
   }
   .el-menu-item,
   .el-submenu__title {
-    height: 46px;
-    line-height: 46px;
-    border-top: 1px solid #3d4957;
+    height: 44px;
+    line-height: 44px;
     &:hover, &:focus {
-      background: #2c3542;
+      background: $darkish;
     }
+  }
+  .el-menu-item, .el-submenu {
+    border-top: 1px solid #3d4957;
   }
 }
 </style>
