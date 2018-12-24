@@ -44,48 +44,16 @@ axios.interceptors.response.use((data) => {
   }
   return data.data.data;
 }, (error) => {
-  let errMsg = '';
-  if (error && error.response && error.response.status) {
-    switch (error.response.status) {
-      case 400:
-        errMsg = '请求错误';
-        break;
-      case 401:
-        errMsg = '授权失败，请重新登录';
-        cookieHandler.logout();
-        // router go login
-        break;
-      case 403:
-        errMsg = '服务器拒绝访问';
-        break;
-      case 404:
-        errMsg = `请求地址错误: ${error.response.config.url}`;
-        break;
-      case 408:
-        errMsg = '请求超时';
-        break;
-      case 500:
-        errMsg = error.response.data.data.msg;
-        break;
-      case 501:
-        errMsg = '服务器无法识别';
-        break;
-      case 502:
-        errMsg = '网关错误';
-        break;
-      case 503:
-        errMsg = '服务错误';
-        break;
-      case 504:
-        errMsg = '网关超时';
-        break;
-      case 505:
-        errMsg = 'HTTP版本不支持';
-        break;
-      default:
-    }
+  // error handler由后端控制
+  if (error && error.response && error.response.status && error.response.data) {
+    const errResponse = {
+      code: error.response.status,
+      data: error.response.data.data,
+      message: error.response.data.message,
+    };
+    return Promise.reject(errResponse);
   }
-  return Promise.reject(errMsg);
+  return Promise.reject('undefined error');
 });
 
 // 替换请求{}中的参数

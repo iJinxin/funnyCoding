@@ -6,7 +6,7 @@
         <el-input v-model="loginForm.account"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input type="password" v-model="loginForm.password"></el-input>
+        <el-input type="password" v-model="loginForm.password" @keyup.enter.native="submit('loginForm')"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" class="submit-btn" @click="submit('loginForm')">登录</el-button>
@@ -46,13 +46,12 @@ export default {
         if (valid) {
           // do login
           const body = Object.assign({}, this.loginForm);
-          $post($api.login, body).then((res) => {
-            console.log(res);
+          $post($api.login, body).then(() => {
+            // todo cookie存储用户信息
+            this.$router.push({ name: 'Home' });
           }).catch((error) => {
-            console.log(error);
+            this.$message(error.message);
           });
-        } else {
-          this.$message.error('账号或密码错误');
         }
       });
     },
