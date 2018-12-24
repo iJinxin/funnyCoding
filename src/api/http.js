@@ -61,9 +61,9 @@ function replaceUrlParams(url, params) {
   const api = url.split('?');
   let apiUrl = api[0];
 
-  for (const i in params) {
-    apiUrl = apiUrl.replace(`{${i}}`, encodeURIComponent(params[i]));
-  }
+  Object.keys(params).forEach((key) => {
+    apiUrl = apiUrl.replace(`{${key}}`, encodeURIComponent(params[key]));
+  });
 
   return apiUrl;
 }
