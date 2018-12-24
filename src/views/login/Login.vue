@@ -16,8 +16,9 @@
 </div>
 </template>
 <script>
-import { $post } from '../../api/http';
-import $api from '../../api/api';
+import { $post } from '@/api/http';
+import $api from '@/api/api';
+import CookieHandler from '@/utils/cookieHandler';
 
 export default {
   name: 'Login',
@@ -46,8 +47,8 @@ export default {
         if (valid) {
           // do login
           const body = Object.assign({}, this.loginForm);
-          $post($api.login, body).then(() => {
-            // todo cookie存储用户信息
+          $post($api.login, body).then((res) => {
+            CookieHandler.set('USER_ID', res.id).set('USER_ACCOUNT', res.account);
             this.$router.push({ name: 'Home' });
           }).catch((error) => {
             this.$message(error.message);

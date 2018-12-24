@@ -12,9 +12,6 @@ export default {
     return {};
   },
   created() {
-    $get(api.testExample).then((res) => {
-      console.log(res);
-    });
   },
 };
 </script>
