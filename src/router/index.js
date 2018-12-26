@@ -10,8 +10,8 @@ const Login = r => require.ensure([], () => r(require('@/views/login/Login')), '
 // tools
 const Calculator = r => require.ensure([], () => r(require('@/views/tools/Calculator')), 'Calculator');
 // note
-const Task = r => require.ensure([], () => r(require('@/views/note/Task')), 'Task');
-const Diary = r => require.ensure([], () => r(require('@/views/note/Diary')), 'Diary');
+const Task = r => require.ensure([], () => r(require('@/views/record/Task')), 'Task');
+const Note = r => require.ensure([], () => r(require('@/views/record/Note')), 'Article');
 // visualization
 const Visualization = r => require.ensure([], () => r(require('@/views/visualization/Visualization')), 'Visualization');
 // about
@@ -25,7 +25,7 @@ export default new Router({
         { path: '/', name: 'Home', component: Home },
         { path: '/calculator', name: 'Calculator', component: Calculator },
         { path: '/task', name: 'Task', component: Task },
-        { path: '/diary', name: 'Diary', component: Diary },
+        { path: '/note', name: 'Note', component: Note },
         { path: '/visualization', name: 'Visualization', component: Visualization },
         { path: '/about', name: 'About', component: About },
       ],

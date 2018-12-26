@@ -25,6 +25,7 @@ const subscribeOnce = (message, callback) => {
 // 消息常量
 export const message = {
   TOGGLE_MENU: 'TOGGLE_MENU', // 菜单栏开启关闭
+  ADD_NOTE: 'ADD_NOTE', // 添加note
 };
 
 export default {

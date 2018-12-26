@@ -1,5 +1,5 @@
 <template>
-  <div class="header_inner display_flex">
+  <div class="header_inner display_flex justify-content__space-between">
     <div class="header_control display_flex">
       <div class="header_control_menu display_flex justify-content__center align-items__center pointer" @click="toggleMenu">
         <i class="iconfont ali-icon-caidan"></i>
@@ -8,6 +8,10 @@
         <span class="home_title">主页</span>
       </div>
     </div>
+    <div class="content-title display_flex align-items__center">
+      <span>知行合一，止于至善</span>
+    </div>
+    <div class="userinfo"></div>
   </div>
 </template>
 
@@ -17,7 +21,12 @@ import SubscribeService, { message } from '@/service/subscribe/subscribeService'
 export default {
   name: 'Header',
   data() {
-    return {};
+    return {
+      headerContent: {
+        title: null,
+        actions: [],
+      },
+    };
   },
   methods: {
     toggleMenu() {
@@ -52,6 +61,10 @@ export default {
         font-size: 18px;
         padding-left: 16px;
       }
+    }
+    .content-title {
+      font-size: 18px;
+      font-family: "Italic";
     }
   }
 </style>
