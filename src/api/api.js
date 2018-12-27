@@ -5,5 +5,7 @@
 export default {
   /* user */
   login: 'user/login',
+  /* record */
+  add_note: 'record/addNote',
 };
 

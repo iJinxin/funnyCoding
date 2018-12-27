@@ -20,6 +20,9 @@
 </template>
 
 <script>
+import CookieHandler from '@/utils/cookieHandler';
+import { $post } from '../../api/http';
+import $api from '../../api/api';
 
 export default {
   name: 'Article',
@@ -44,7 +47,19 @@ export default {
     submit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.addNoteVisible = false;
+          const USER_ID = CookieHandler.get('USER_ID');
+          const body = {
+            userId: USER_ID,
+            content: this.noteForm.noteContent,
+          };
+          $post($api.add_note, body).then(() => {
+            this.$message.success('添加成功');
+            this.noteForm.noteContent = '';
+            this.addNoteVisible = false;
+          }).catch(() => {
+            this.$message.error('添加失败');
+            this.addNoteVisible = false;
+          });
         }
       });
     },
