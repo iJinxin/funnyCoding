@@ -1,6 +1,21 @@
 <template>
-  <div class="article article-v1">
-    <router-view/>
+  <div class="note note-v1">
+    <section class="note-header">
+      <span>知行合一，止于至善</span>
+      <i class="iconfont ali-icon-write pointer" @click="addNote()"></i>
+    </section>
+    <section class="note-content"></section>
+    <el-dialog title="添加note" :visible.sync="addNoteVisible">
+      <el-form :model="noteForm" :rules="rules" ref="noteForm">
+        <el-form-item prop="noteContent">
+          <el-input type="textarea" v-model="noteForm.noteContent"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <button class="primary small" @click="submit('noteForm')">确定</button>
+        <button class="info small" @click="cancel()">取消</button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -9,14 +24,67 @@
 export default {
   name: 'Article',
   data() {
-    return {};
+    return {
+      addNoteVisible: false,
+      noteForm: {
+        noteContent: '',
+      },
+      rules: {
+        noteContent: [
+          { required: true, message: '是不是忘了点什么？', trigger: 'blur' },
+          { max: 160, message: 'too long to hold on', trigger: 'change' },
+        ],
+      },
+    };
+  },
+  methods: {
+    addNote() {
+      this.addNoteVisible = true;
+    },
+    submit(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.addNoteVisible = false;
+        }
+      });
+    },
+    cancel() {
+      this.addNoteVisible = false;
+    },
   },
 };
 </script>
 
 <style lang="scss">
-.article-v1 {
-  width: 780px;
+.note-v1 {
+  width: 720px;
   margin: 0 auto;
+  .note-header {
+    position: relative;
+    height: 56px;
+    line-height: 56px;
+    text-align: center;
+    > span {
+      font-size: 18px;
+    }
+    >i {
+      position: absolute;
+      right: 0;
+      z-index: 1;
+      padding: 0 15px;
+      font-size: 16px;
+    }
+  }
+  .el-dialog {
+    width: 550px;
+  }
+  .el-dialog__body {
+    padding: 10px 20px;
+  }
+  .el-textarea__inner {
+    height: 120px;
+    font-size: 14px;
+    font-family: $global-font-family;
+  }
 }
 </style>

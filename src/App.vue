@@ -22,9 +22,6 @@ export default {
 <style module lang="scss">
   .app {
     position: relative;
-    line-height: 1.5;
-    font-size: 14px;
-    color: $default;
     background: #fff;
     min-height: 100%;
   }

@@ -23,9 +23,12 @@ $pink: #FF7477 !default;
 $button-colors: (
   primary: (base: $babyblue),
   success: (base: $green),
-  warning: (base: $yellow)
+  warning: (base: $yellow),
+  info: (base: $gray)
 );
 
+// font
+$global-font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Source Han Sans SC', 'Noto Sans CJK SC', sans-serif;
 
 // ====== Container ====== //
 $container_width: 1200px !default;
