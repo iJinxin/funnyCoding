@@ -21,7 +21,7 @@
 
 <script>
 import CookieHandler from '@/utils/cookieHandler';
-import { $post } from '../../api/http';
+import { $get, $post } from '../../api/http';
 import $api from '../../api/api';
 
 export default {
@@ -40,9 +40,20 @@ export default {
       },
     };
   },
+  created() {
+    this.queryNotes();
+  },
   methods: {
     addNote() {
       this.addNoteVisible = true;
+    },
+    queryNotes() {
+      const USER_ID = CookieHandler.get('USER_ID');
+      $get($api.query_notes, { userId: USER_ID }).then((res) => {
+        console.log(res);
+      }).catch((err) => {
+        console.log(err);
+      });
     },
     submit(formName) {
       this.$refs[formName].validate((valid) => {

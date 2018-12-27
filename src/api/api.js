@@ -7,5 +7,6 @@ export default {
   login: 'user/login',
   /* record */
   add_note: 'record/addNote',
+  query_notes: 'record/queryNotesByUserId',
 };
 
