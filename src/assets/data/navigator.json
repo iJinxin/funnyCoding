@@ -30,6 +30,18 @@
       ]
     },
     {
+      "index": "canvas",
+      "icon": "ali-icon-Canvas",
+      "name": "Canvas",
+      "subItems": [
+        {
+          "index": "barrage",
+          "icon": "ali-icon-barrage",
+          "name": "弹幕"
+        }
+      ]
+    },
+    {
       "index": "visualization",
       "icon": "ali-icon-Visualizationanalys",
       "name": "可视化",

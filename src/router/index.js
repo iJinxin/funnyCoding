@@ -12,6 +12,8 @@ const Calculator = r => require.ensure([], () => r(require('@/views/tools/Calcul
 // note
 const Task = r => require.ensure([], () => r(require('@/views/record/Task')), 'Task');
 const Note = r => require.ensure([], () => r(require('@/views/record/Note')), 'Article');
+// canvas
+const Barrage = r => require.ensure([], () => r(require('@/views/canvas/Barrage')), 'Barrage');
 // visualization
 const Visualization = r => require.ensure([], () => r(require('@/views/visualization/Visualization')), 'Visualization');
 // about
@@ -26,6 +28,7 @@ export default new Router({
         { path: '/calculator', name: 'Calculator', component: Calculator },
         { path: '/task', name: 'Task', component: Task },
         { path: '/note', name: 'Note', component: Note },
+        { path: '/barrage', name: 'Barrage', component: Barrage },
         { path: '/visualization', name: 'Visualization', component: Visualization },
         { path: '/about', name: 'About', component: About },
       ],
