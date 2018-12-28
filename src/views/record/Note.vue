@@ -8,9 +8,10 @@
       <section class="note-content">
         <template v-for="note in noteList">
           <div :key="note._id" class="note-item display_flex flex_direction__column">
-            <div>
+            <div class="display_flex align-items__center">
               <span class="note-item__date">{{note.date}}</span>
-              <button class="note-item__button text gray" @click="removeNote(note._id)">删除</button>
+              <i class="iconfont ali-icon-delete note-item__button pointer" @click="removeNote(note._id)"></i>
+              <!--<button class="note-item__button text gray" @click="removeNote(note._id)">删除</button>-->
             </div>
             <span class="note-item__content">{{note.content}}</span>
           </div>
@@ -98,6 +99,7 @@ export default {
             this.$message.success('添加成功');
             this.noteForm.noteContent = '';
             this.addNoteVisible = false;
+            this.queryNotes();
           }).catch(() => {
             this.$message.error('添加失败');
             this.addNoteVisible = false;
@@ -106,7 +108,7 @@ export default {
       });
     },
     removeNote(noteId) {
-      $delete($api.delete_note, { nodeId: noteId }).then(() => {
+      $get($api.delete_note, { noteId: noteId }).then(() => {
         this.queryNotes();
       });
     },
@@ -180,6 +182,7 @@ export default {
         margin-left: 15px;
         font-size: 12px;
         display: none;
+        color: $gray;
         &:hover {
           color: $babyblue;
         }
