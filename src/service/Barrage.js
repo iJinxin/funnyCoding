@@ -58,8 +58,8 @@ class CanvasBarrage {
     this.isPlaying = false;
 
     this.barrages = data.map(item => new Barrage(item, this.ctx));
-    console.log(this);
   }
+  // 绘制当前在可视区的弹幕
   renderBarrage() {
     const time = this.video.currentTime;
     this.barrages.forEach((barrage) => {
@@ -77,6 +77,10 @@ class CanvasBarrage {
         }
       }
     });
+  }
+  // 发送弹幕，opts包含barrage全部参数
+  add(opts) {
+    this.barrages.push(new Barrage(opts, this.ctx));
   }
   render() {
     this.clear();

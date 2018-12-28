@@ -2,9 +2,12 @@
 <div class="barrage-container">
   <div class="barrage-container__inner">
     <section class="info">
-      <i></i>
+      <i class="iconfont ali-icon-notify"></i>
       <span>视频素材取自
-        <a href="https://www.bilibili.com/video/av2271112?from=search&seid=3934341032502483606">bilibili</a>如有侵权，请联系我删除
+        <a class="info-link" target="_blank" href="https://www.bilibili.com/video/av2271112?from=search&seid=3934341032502483606">
+          bilibili
+        </a>
+        如有侵权，请联系我删除。
       </span>
     </section>
     <section class="main">
@@ -12,7 +15,12 @@
       <video src="../../assets/video/areyouok.mp4" poster="../../assets/image/areyouok_cover.jpg"
              id="video" class="video" controls width="800px" height="460px"></video>
     </section>
-    <section class="reference"></section>
+    <section class="reference">
+      <div class="color-picker">
+        <span>颜色：</span>
+        <el-color-picker v-model="color"></el-color-picker>
+      </div>
+    </section>
   </div>
 </div>
 </template>
@@ -24,7 +32,7 @@ export default {
   name: 'Barrage',
   data() {
     return {
-      videoUrl: '../../ass',
+      color: '#ffffff',
     };
   },
   mounted() {
@@ -46,9 +54,11 @@ export default {
     margin: 0 auto;
   }
   .info {
+    margin-top: 30px;
   }
   .main {
     position: relative;
+    margin-top: 20px;
     .canvas {
       position: absolute;
       z-index: 10;
