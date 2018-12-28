@@ -17,6 +17,9 @@ button{
     background: map-get($color, base);
     color: #fff
   }
+  button.text.#{$name} {
+    color: map-get($color, base);
+  }
 }
 
 // 尺寸
@@ -39,3 +42,8 @@ button.mini {
 
 }
 
+// 文字按钮
+button.text {
+  background: transparent;
+  padding: 0;
+}

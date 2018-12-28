@@ -8,5 +8,6 @@ export default {
   /* record */
   add_note: 'record/addNote',
   query_notes: 'record/queryNotesByUserId',
+  delete_note: 'record/deleteNote',
 };
 
