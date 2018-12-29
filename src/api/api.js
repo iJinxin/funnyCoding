@@ -9,5 +9,8 @@ export default {
   add_note: 'record/addNote',
   query_notes: 'record/queryNotesByUserId',
   delete_note: 'record/deleteNote',
+  /* canvas */
+  query_barrages: 'canvas/queryBarrages',
+  add_barrage: 'canvas/addBarrage',
 };
 

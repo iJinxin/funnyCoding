@@ -17,11 +17,11 @@
     </section>
     <section class="barrage">
       <div class="color-picker display_flex align-items__center">
-        <el-color-picker v-model="color"></el-color-picker>
-        <el-slider v-model="font" :max="20" :min="14" :format-tooltip="formatFont"></el-slider>
-        <el-slider v-model="speed" :max="3" :min="0.5" :step="0.5" :format-tooltip="formatSpeed"></el-slider>
+        <el-color-picker v-model="barrage.color"></el-color-picker>
+        <el-slider v-model="barrage.font" :max="30" :min="14" :format-tooltip="formatFont"></el-slider>
+        <el-slider v-model="barrage.speed" :max="3.5" :min="0.5" :step="0.5" :format-tooltip="formatSpeed"></el-slider>
         <div class="value flex_1 display_flex justify-content__flex-end">
-          <el-input v-model="value" @keyup.enter.native="send()"></el-input>
+          <el-input v-model="barrage.value" :maxlength="20" @keyup.enter.native="send()"></el-input>
           <button class="primary small" @click="send()">发送</button>
         </div>
       </div>
@@ -32,61 +32,69 @@
 
 <script>
 import CanvasBarrage from '@/service/Barrage';
+import { $get, $post } from '@/api/http';
+import $api from '@/api/api';
 
 export default {
   name: 'Barrage',
   data() {
     return {
-      font: 16,
-      color: '#ffffff',
-      speed: 1,
-      value: '',
+      canvas: null,
       video: null,
       canvasBarrage: null,
+      barrages: [],
+      barrage: {
+        font: 18,
+        color: '#ffffff',
+        speed: 2,
+        value: '',
+      },
     };
   },
+  created() {
+    // this.queryBarrages();
+  },
   mounted() {
-    const canvas = document.getElementById('canvas');
+    this.canvas = document.getElementById('canvas');
     this.video = document.getElementById('video');
-    const data = [
-      { value: '哈哈', time: 2, color: 'red', speed: 1, font: 16 },
-      { value: 'sososso', time: 3, color: 'red', speed: 3, font: 15 },
-      { value: '哈哈', time: 5, color: 'white', speed: 1.5, font: 16 },
-      { value: '哈哈', time: 7, color: 'yellow', speed: 2, font: 20 },
-    ];
-    this.canvasBarrage = new CanvasBarrage(canvas, this.video, data);
-    // 播放
-    this.video.addEventListener('play', () => {
-      this.canvasBarrage.isPlaying = true;
-      this.canvasBarrage.render();
-    });
-    // 暂停
-    this.video.addEventListener('pause', () => {
-      this.canvasBarrage.isPlaying = false;
-    });
-    // 拖动进度条，需要回放，重新渲染弹幕
-    this.video.addEventListener('seeked', () => {
-      this.canvasBarrage.playback();
-    });
+    this.queryBarrages();
   },
   methods: {
+    queryBarrages() {
+      $get($api.query_barrages).then((res) => {
+        this.barrages = res.data;
+        this.initBarrages(this.barrages);
+      }, () => {
+        this.$message.warning('获取弹幕失败');
+      });
+    },
+    send() {
+      this.barrage.time = this.video.currentTime;
+      this.canvasBarrage.add(this.barrage);
+      this.value = '';
+      $post($api.add_barrage, this.barrage);
+    },
+    initBarrages() {
+      this.canvasBarrage = new CanvasBarrage(this.canvas, this.video, this.barrages);
+      // 播放
+      this.video.addEventListener('play', () => {
+        this.canvasBarrage.isPlaying = true;
+        this.canvasBarrage.render();
+      });
+      // 暂停
+      this.video.addEventListener('pause', () => {
+        this.canvasBarrage.isPlaying = false;
+      });
+      // 拖动进度条，需要回放，重新渲染弹幕
+      this.video.addEventListener('seeked', () => {
+        this.canvasBarrage.playback();
+      });
+    },
     formatFont(val) {
       return `fontSize: ${val}px`;
     },
     formatSpeed(val) {
       return `Speed: ${val}`;
-    },
-    send() {
-      const time = this.video.currentTime;
-      const barrage = {
-        value: this.value,
-        time,
-        color: this.color,
-        speed: this.speed,
-        font: this.font,
-      };
-      this.canvasBarrage.add(barrage);
-      this.value = '';
     },
   },
 };

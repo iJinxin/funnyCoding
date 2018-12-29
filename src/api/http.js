@@ -38,7 +38,7 @@ axios.interceptors.response.use((data) => {
     // 200 正常响应, 304取缓存
     // data.data 为服务器返回的消息体Object
     if (data.data) {
-      return data.data.data;
+      return data.data;
     }
     return Promise.reject('服务器数据错误');
   }
