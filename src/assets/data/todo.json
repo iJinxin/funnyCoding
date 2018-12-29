@@ -1,0 +1,12 @@
+    {
+      "index": "visualization",
+      "icon": "ali-icon-Visualizationanalys",
+      "name": "可视化",
+      "subItems": [
+        {
+          "index": "/visualization",
+          "icon": "ali-icon-Visualizationanalys",
+          "name": "可视化"
+        }
+      ]
+    }
