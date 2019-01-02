@@ -16,6 +16,7 @@ const Note = r => require.ensure([], () => r(require('@/views/record/Note')), 'A
 const Barrage = r => require.ensure([], () => r(require('@/views/canvas/Barrage')), 'Barrage');
 // algorithm
 const Knapsack = r => require.ensure([], () => r(require('@/views/algorithm/Knapsack')), 'Knapsack');
+const Waterfall = r => require.ensure([], () => r(require('@/views/algorithm/Waterfall')), 'Waterfall');
 // visualization
 const Visualization = r => require.ensure([], () => r(require('@/views/visualization/Visualization')), 'Visualization');
 // about
@@ -32,6 +33,7 @@ export default new Router({
         { path: '/note', name: 'Note', component: Note },
         { path: '/barrage', name: 'Barrage', component: Barrage },
         { path: '/knapsack', name: 'Knapsack', component: Knapsack },
+        { path: '/waterfall', name: 'Waterfall', component: Waterfall },
         { path: '/visualization', name: 'Visualization', component: Visualization },
         { path: '/about', name: 'About', component: About },
       ],

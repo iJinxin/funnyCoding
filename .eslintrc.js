@@ -43,6 +43,8 @@ module.exports = {
     'max-len': [2, {
       'code': 150
     }],
-    'no-param-reassign': 'off'
+    'no-param-reassign': 'off',
+    'no-undef': 'off',
+    'no-plusplus': 'off'
   }
 };

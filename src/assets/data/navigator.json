@@ -50,6 +50,11 @@
           "index": "/knapsack",
           "icon": "",
           "name": "背包问题"
+        },
+        {
+          "index": "/waterfall",
+          "icon": "ali-icon-Waterfall",
+          "name": "瀑布流"
         }
       ]
     },
