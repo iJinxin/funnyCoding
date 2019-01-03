@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import vHeader from '@/components/header/Header';
-import vFooter from '@/components/footer/Footer';
+import vHeader from '@/components/common/Header';
+import vFooter from '@/components/common/Footer';
 import { isLogin } from '@/service/user/baseInfo';
 
 export default {

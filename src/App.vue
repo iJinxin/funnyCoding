@@ -1,12 +1,12 @@
 <template>
-  <div id="app" :class="$style.app">
+  <div id="app" class="funny-coding">
     <sidebar/>
     <router-view/>
   </div>
 </template>
 
 <script>
-import sidebar from '@/components/nav/sidebar';
+import sidebar from '@/components/common/sidebar';
 
 export default {
   name: 'app',
@@ -19,8 +19,8 @@ export default {
 };
 </script>
 
-<style module lang="scss">
-  .app {
+<style lang="scss">
+  .funny-coding {
     position: relative;
     background: #fff;
     min-height: 100%;
