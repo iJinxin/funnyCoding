@@ -1,25 +1,26 @@
 // 瀑布队列，记录每一列长度，初始化为0
-class WaterfulQueue {
-  constructor() {
+class WaterfallQueue {
+  constructor(queueId) {
     this.queue = [];
     this.height = 0;
+    this.queueId = queueId;
   }
-  addHeight(height) {
-    this.queue.push(height);
-    this.height += height;
-  }
-  getHeight() {
-    return this.height;
+  addImg(img) {
+    // 使用插入排序，保证每次生成数据插入后的顺序。
+    const index = _.sortedIndexBy(this.queue, img, o => o.index);
+    this.queue.splice(index, 0, img);
+    this.height += img.height;
   }
 }
 
 // 瀑布流n个数据，k列
-class Waterful {
+// totalCount记录瀑布流中元素总数
+class Waterfall {
   constructor(k) {
-    this.k = k;
+    this.totalCount = 0;
     this.queueList = [];
     for (let i = 0; i < k; i++) {
-      this.queueList[i] = new WaterfulQueue();
+      this.queueList[i] = new WaterfallQueue(i);
     }
   }
   addItems(n) {
@@ -27,7 +28,8 @@ class Waterful {
     const orderlyData = _.sortBy(n, obj => -obj.height);
     for (let i = 0; i < orderlyData.length; i++) {
       const minIndex = this.getminQueue();
-      this.queueList[minIndex].addHeight(orderlyData[i].height);
+      this.queueList[minIndex].addImg(orderlyData[i]);
+      this.totalCount++;
     }
   }
   getminQueue() {
@@ -41,23 +43,13 @@ class Waterful {
     }
     return index;
   }
+  resetQueue() {
+    this.totalCount = 0;
+    for (let i = 0; i < this.queueList.length; i++) {
+      this.queueList[i].height = 0;
+      this.queueList[i].queue = [];
+    }
+  }
 }
 
-const data = [
-  { id: 1, color: '#333333', height: 120 },
-  { id: 2, color: '#233232', height: 10 },
-  { id: 3, color: '#111111', height: 60 },
-  { id: 4, color: '#212155', height: 20 },
-  { id: 5, color: '#389099', height: 10 },
-  { id: 6, color: '#888888', height: 1 },
-  { id: 7, color: '#888888', height: 100 },
-  { id: 6, color: '#888888', height: 50 },
-  { id: 6, color: '#888888', height: 40 },
-  { id: 6, color: '#888888', height: 100 },
-  { id: 6, color: '#888888', height: 10 },
-];
-const waterfall = new Waterful(4);
-waterfall.addItems(data);
-console.log(waterfall);
-
-export default Waterful;
+export default Waterfall;
