@@ -3,7 +3,7 @@ import router from '@/router';
 import cookieHandler from '../utils/cookieHandler';
 
 const DEV_HOST = 'http://localhost:3001/';
-const BUILD_HOST = 'api/';
+const BUILD_HOST = '/';
 const API_HOST = process.env.NODE_ENV === 'production' ? BUILD_HOST : DEV_HOST;
 
 
