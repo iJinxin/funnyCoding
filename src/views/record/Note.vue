@@ -34,7 +34,7 @@
 
 <script>
 import CookieHandler from '@/utils/cookieHandler';
-import { $get, $post, $delete } from '../../api/http';
+import { $get, $post } from '../../api/http';
 import $api from '../../api/api';
 
 export default {
@@ -108,7 +108,7 @@ export default {
       });
     },
     removeNote(noteId) {
-      $get($api.delete_note, { noteId: noteId }).then(() => {
+      $get($api.delete_note, { noteId }).then(() => {
         this.queryNotes();
       });
     },
@@ -184,7 +184,7 @@ export default {
         display: none;
         color: $gray;
         &:hover {
-          color: $babyblue;
+          color: $green;
         }
       }
       .note-item__content {
@@ -193,7 +193,7 @@ export default {
     }
     .note-item:hover {
       .note-item__date::before {
-        background: $babyblue;
+        background: $green;
       }
       .note-item__button {
         display: inline-block;

@@ -75,25 +75,25 @@ function replaceUrlParams(url, params) {
 // ------------------------------------------//
 
 // axios#get(url[, config])
-export const $get = function (url, param) {
+export const $get = (url, param) => {
   const totalUrl = replaceUrlParams(url, param);
   return axios.get(totalUrl, { params: param });
 };
 
 // axios#post(url[, data[, config]])
-export const $post = function (url, body, param) {
+export const $post = (url, body, param) => {
   const totalUrl = replaceUrlParams(url, param);
   return axios.post(totalUrl, body, { params: param });
 };
 
 // axios#put(url[, data[, config]])
-export const $put = function (url, body, param) {
+export const $put = (url, body, param) => {
   const totalUrl = replaceUrlParams(url, param);
   return axios.put(totalUrl, body, { params: param });
 };
 
 // axios#delete(url[, config])
-export const $delete = function (url, param) {
+export const $delete = (url, param) => {
   const totalUrl = replaceUrlParams(url, param);
   return axios.delete(totalUrl, { params: param });
 };

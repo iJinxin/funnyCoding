@@ -23,7 +23,7 @@ export default {
       padding-left: 5px;
       &:hover {
         text-decoration: underline;
-        color: $babyblue;
+        color: $green;
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-
+<div class="isometry-waterfall"></div>
 </template>
 
 <script>

@@ -15,13 +15,14 @@ $lightgray2: #F6F6F6 !default;
 $blue: #0084FF !default;
 $babyblue:  #00c1de !default;
 $yellow: #FFC367 !default;
-$green: #28DA99 !default;
+$green: #00c1de !default;
+$lightGreen: #28d0e9 !default;
 $pink: #FF7477 !default;
 
 // ====== Button Color ====== //
 // primary-蓝色，success-绿色，warning-黄色，danger-红色
 $button-colors: (
-  primary: (base: $babyblue),
+  primary: (base: $green),
   success: (base: $green),
   warning: (base: $yellow),
   info: (base: $gray)

@@ -1,8 +1,5 @@
 <template>
   <div class="app-wrapper layout-v1">
-    <header class="app-header">
-      <v-header/>
-    </header>
     <main class="app-main">
       <router-view/>
     </main>
@@ -13,7 +10,6 @@
 </template>
 
 <script>
-import vHeader from '@/components/common/Header';
 import vFooter from '@/components/common/Footer';
 import { isLogin } from '@/service/user/baseInfo';
 
@@ -22,7 +18,7 @@ export default {
     return {};
   },
   components: {
-    vHeader, vFooter,
+    vFooter,
   },
   beforeCreate() {
     const userLogin = isLogin();
@@ -37,17 +33,15 @@ export default {
   .app-wrapper {
     padding-bottom: $footer_height;
     box-sizing: border-box;
-    .app-header {
-      height: 50px;
-      width: 100%;
-      position: relative;
-      z-index: 1000;
+    .app-main {
+      margin-left: 58px;
     }
     .app-footer {
       height: $footer_height;
-      width: 100%;
       background: $dark;
       position: absolute;
+      left: 58px;
+      right: 0;
       bottom: 0;
     }
   }

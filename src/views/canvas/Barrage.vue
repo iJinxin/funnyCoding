@@ -107,7 +107,7 @@ export default {
     margin: 0 auto;
   }
   .info {
-    margin-top: 30px;
+    padding-top: 30px;
   }
   .main {
     position: relative;
