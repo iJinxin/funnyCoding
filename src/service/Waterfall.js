@@ -1,4 +1,11 @@
-// 瀑布队列，记录每一列长度，初始化为0
+/**
+ * 使用优先级队列解决“最小差”瀑布流问题
+ * 把所有图片按高度排序，每一列为一个分组，也是优先级队列里的一个元素，优先级由分组总高度决定
+ * 每次把当前最高图片放置在优先级最高(最矮)的分组中，重置优先级
+ * repeat
+ */
+
+// 瀑布分组，记录每一列长度，初始化为0
 class WaterfallQueue {
   constructor(queueId) {
     this.queue = [];
@@ -13,6 +20,7 @@ class WaterfallQueue {
   }
 }
 
+// 优先级队列，每个WaterfallQueue实例作为一个元素
 // 瀑布流n个数据，k列
 // totalCount记录瀑布流中元素总数
 class Waterfall {
@@ -32,6 +40,7 @@ class Waterfall {
       this.totalCount++;
     }
   }
+  // 获取最优先队列
   getminQueue() {
     let min = this.queueList[0].height;
     let index = 0;
@@ -43,6 +52,7 @@ class Waterfall {
     }
     return index;
   }
+  // 重置，队列清空
   resetQueue() {
     this.totalCount = 0;
     for (let i = 0; i < this.queueList.length; i++) {
