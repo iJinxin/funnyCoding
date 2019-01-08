@@ -70,12 +70,3 @@
 .pointer {
   cursor: pointer !important;
 }
-
-// flex定位，兼容性写法
-.flex {
-  display: -ms-flexbox;
-  display: -moz-box;
-  display: -webkit-box;
-  display: -ms-flex;
-  display: flex;
-}

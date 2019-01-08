@@ -12,16 +12,23 @@
     </div>
     <div class="answer-list">
       <p class="answer-list-item display_flex flex_direction__column">
-        <span class="answer-time">updated at 2019-1-3</span>
+        <span class="answer-time">updated on 2019-1-3</span>
         <span class="answer-content">
           使用优先级队列，每一列为一个队列，高度最小的队列优先级最高，每次选出当前高度最大的图片放入最优先队列中，放置后更新优先级。
+        </span>
+      </p>
+      <p class="answer-list-item display_flex flex_direction__column">
+        <span class="answer-time">updated on 2019-1-8</span>
+        <span class="answer-content">
+          thanks <a target="_blank" href="https://github.com/RexSkz">Rex Zeng</a>，已证实当前算法不正确，具体原因在
+          <a target="_blank" href="https://github.com/LeuisKen/leuisken.github.io/issues/2">这里 </a>。
         </span>
       </p>
     </div>
     <div class="more">
       <p>
         <i class="iconfont ali-icon-notify"></i>
-        目前无法证明该方法是否正确，是否为最优解。如果你有更好的想法，请联系我。
+        <del>目前无法证明该方法是否正确，是否为最优解</del>，如果你有更好的想法，请联系我。
       </p>
     </div>
   </section>
@@ -82,6 +89,12 @@ export default {
 </script>
 
 <style lang="scss">
+  .el-tabs__item.is-active {
+    color: $babyblue;
+  }
+  .el-tabs__active-bar {
+    background-color: $babyblue;
+  }
 .aequilate-waterfall {
   margin-bottom: 15px;
   .waterfall-introduction {
@@ -93,6 +106,13 @@ export default {
     }
     .answer-content {
       text-indent: 2em;
+      > a{
+        text-decoration: none;
+        color: $babyblue;
+        &:hover {
+          color: $blue;
+        }
+      }
     }
   }
   .waterfall-content {
@@ -108,7 +128,7 @@ export default {
   }
   blockquote {
     border: 1px solid #e3e3e3;
-    border-left: 5px solid #0af;
+    border-left: 5px solid $babyblue;
     margin: 0 0 1em 0;
     padding: 0 20px;
   }
