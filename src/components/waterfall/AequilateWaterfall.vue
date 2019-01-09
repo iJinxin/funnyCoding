@@ -24,6 +24,7 @@
           <a target="_blank" href="https://github.com/LeuisKen/leuisken.github.io/issues/2">这里 </a>。
         </span>
       </p>
+      <p>https://en.wikipedia.org/wiki/Partition_problem</p>
     </div>
     <div class="more">
       <p>
