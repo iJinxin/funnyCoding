@@ -11,26 +11,30 @@
       <button class="primary small" @click="clearData()">清除数据</button>
     </div>
     <div class="answer-list">
-      <p class="answer-list-item display_flex flex_direction__column">
-        <span class="answer-time">updated on 2019-1-3</span>
-        <span class="answer-content">
-          使用优先级队列，每一列为一个队列，高度最小的队列优先级最高，每次选出当前高度最大的图片放入最优先队列中，放置后更新优先级。
+      <template v-for="item in updateList">
+        <p :key="item.id" class="answer-list-item display_flex flex_direction__column">
+          <span class="answer-time">updated on {{item.time}}</span>
+          <span class="answer-content">
+            {{item.content}}
         </span>
-      </p>
-      <p class="answer-list-item display_flex flex_direction__column">
-        <span class="answer-time">updated on 2019-1-8</span>
-        <span class="answer-content">
-          thanks <a target="_blank" href="https://github.com/RexSkz">Rex Zeng</a>，已证实当前算法不正确，具体原因在
-          <a target="_blank" href="https://github.com/LeuisKen/leuisken.github.io/issues/2">这里 </a>。
-        </span>
-      </p>
-      <p>https://en.wikipedia.org/wiki/Partition_problem</p>
+        </p>
+      </template>
     </div>
     <div class="more">
       <p>
-        <i class="iconfont ali-icon-notify"></i>
-        <del>目前无法证明该方法是否正确，是否为最优解</del>，如果你有更好的想法，请联系我。
+        <i class="iconfont ali-icon-notify"></i>关于
       </p>
+      <p>
+        thanks <a target="_blank" href="https://github.com/RexSkz">Rex Zeng</a> 指出反例，
+        <a target="_blank" href="https://github.com/LeuisKen/leuisken.github.io/issues/2">github issue</a>
+      </p>
+      <p>
+        <a target="_blank" href="https://en.wikipedia.org/wiki/Partition_problem">wiki说明</a>
+      </p>
+    </div>
+    <div class="thinking">
+      <p>Thinking:</p>
+      <p>本来以为只是一道简单的瀑布流插入问题，没想到最终牵扯到了np-hard问题，学无止境。</p>
     </div>
   </section>
   <section class="waterfall-content flex_1 display_flex" ref="waterfall">
@@ -61,6 +65,23 @@ export default {
       waterfall: {},
       orderedQueue: [],
       colorSample: ['#C6CCD2', '#989EA3', '#5D6165', '#AECBAE', '#3F5D7B', '#FC40FF', '#4E7D5A', '#757BA0', '#AA7B9B'],
+      updateList: [
+        {
+          id: 1,
+          time: '2019-1-4',
+          content: '使用优先级队列，每一列为一个队列，高度最小的队列优先级最高，每次选出当前高度最大的图片放入最优先队列中，放置后更新优先级。',
+        },
+        {
+          id: 2,
+          time: '2019-1-4',
+          content: '已在github上被指出不符合最优解的例子',
+        },
+        {
+          id: 3,
+          time: '2019-1-9',
+          content: 'thank god, 在wiki上找到了解答。',
+        },
+      ],
     };
   },
   mounted() {
@@ -134,7 +155,6 @@ export default {
     padding: 0 20px;
   }
   .more {
-    color: $gray;
     margin-top: 30px;
   }
 }
