@@ -1,58 +1,58 @@
 <template>
-<div class="aequilate-waterfall display_flex">
-  <section class="waterfall-introduction">
-    <blockquote>
-      <p>如何让等宽瀑布流几列图片之间的高度差最小？</p>
-    </blockquote>
-    <div class="actions display_flex justify-content__space-between">
-      <button class="primary small" @click="addItems(1)">添加一个</button>
-      <button class="primary small" @click="addItems(20)">添加20个</button>
-      <button class="primary small" @click="addItems(50)">添加50个</button>
-      <button class="primary small" @click="clearData()">清除数据</button>
-    </div>
-    <div class="answer-list">
-      <template v-for="item in updateList">
-        <p :key="item.id" class="answer-list-item display_flex flex_direction__column">
-          <span class="answer-time">updated on {{item.time}}</span>
-          <span class="answer-content">
+  <div class="aequilate-waterfall display_flex">
+    <div class="waterfall-introduction">
+      <blockquote class="article-blockquote">
+        <p>如何让等宽瀑布流几列图片之间的高度差最小？</p>
+      </blockquote>
+      <div class="actions display_flex justify-content__space-between">
+        <button class="primary small" @click="addItems(1)">添加一个</button>
+        <button class="primary small" @click="addItems(20)">添加20个</button>
+        <button class="primary small" @click="addItems(50)">添加50个</button>
+        <button class="primary small" @click="clearData()">清除数据</button>
+      </div>
+      <article class="doc-container">
+        <template v-for="item in updateList">
+          <section class="section" :key="item.id">
+            <div class="subheading">updated on {{item.time}}</div>
+            <div class="content indent_2">
             {{item.content}}
-        </span>
-        </p>
+            </div>
+          </section>
+        </template>
+        <section>
+          <div class="title_secondary">
+            <i class="iconfont ali-icon-notify"></i>关于
+          </div>
+          <div class="content indent_2">
+            <ul>
+              <li>thanks <a target="_blank" href="https://github.com/RexSkz">Rex Zeng</a> 指出反例，
+                <a target="_blank" href="https://github.com/LeuisKen/leuisken.github.io/issues/2">github issue</a></li>
+              <li><a target="_blank" href="https://en.wikipedia.org/wiki/Partition_problem">wiki说明</a></li>
+            </ul>
+          </div>
+        </section>
+        <section class="section">
+          <div class="title_secondary">Thinking:</div>
+          <div class="content indent_2">本来以为只是一道简单的瀑布流插入问题，没想到最终牵扯到了np-hard问题，学无止境。</div>
+        </section>
+      </article>
+    </div>
+    <div class="waterfall-content flex_1 display_flex" ref="waterfall">
+      <template v-for="queue in this.waterfall.queueList">
+        <div :key="queue.queueId" class="waterfall-queue flex_1">
+          <template v-if="queue.height">
+            <div class="queue-total">{{queue.height}}</div>
+          </template>
+          <template v-for="img in queue.queue">
+            <div class="waterfall-queue-item display_flex align-items__center justify-content__center"
+                 :key="img.index" :style="{height: img.height + 'px', backgroundColor: img.color}">
+              {{img.height}}
+            </div>
+          </template>
+        </div>
       </template>
     </div>
-    <div class="more">
-      <p>
-        <i class="iconfont ali-icon-notify"></i>关于
-      </p>
-      <p>
-        thanks <a target="_blank" href="https://github.com/RexSkz">Rex Zeng</a> 指出反例，
-        <a target="_blank" href="https://github.com/LeuisKen/leuisken.github.io/issues/2">github issue</a>
-      </p>
-      <p>
-        <a target="_blank" href="https://en.wikipedia.org/wiki/Partition_problem">wiki说明</a>
-      </p>
-    </div>
-    <div class="thinking">
-      <p>Thinking:</p>
-      <p>本来以为只是一道简单的瀑布流插入问题，没想到最终牵扯到了np-hard问题，学无止境。</p>
-    </div>
-  </section>
-  <section class="waterfall-content flex_1 display_flex" ref="waterfall">
-    <template v-for="queue in this.waterfall.queueList">
-      <div :key="queue.queueId" class="waterfall-queue flex_1">
-        <template v-if="queue.height">
-          <div class="queue-total">{{queue.height}}</div>
-        </template>
-        <template v-for="img in queue.queue">
-          <div class="waterfall-queue-item display_flex align-items__center justify-content__center"
-               :key="img.index" :style="{height: img.height + 'px', backgroundColor: img.color}">
-            {{img.height}}
-          </div>
-        </template>
-      </div>
-    </template>
-  </section>
-</div>
+  </div>
 </template>
 
 <script>
@@ -114,48 +114,16 @@ export default {
   .el-tabs__item.is-active {
     color: $babyblue;
   }
+
   .el-tabs__active-bar {
     background-color: $babyblue;
   }
-.aequilate-waterfall {
-  margin-bottom: 15px;
-  .waterfall-introduction {
-    width: 360px;
-    padding:5px 20px;
-    .answer-time {
-      font-size: 12px;
-      color: $gray;
-    }
-    .answer-content {
-      text-indent: 2em;
-      > a{
-        text-decoration: none;
-        color: $babyblue;
-        &:hover {
-          color: $blue;
-        }
-      }
+
+  .aequilate-waterfall {
+    margin-bottom: 15px;
+    .waterfall-introduction {
+      width: 360px;
+      padding: 5px 20px;
     }
   }
-  .waterfall-content {
-    .waterfall-queue {
-      margin: 0 5px;
-    }
-    .queue-total {
-      text-align: center;
-    }
-    .waterfall-queue-item {
-      margin-top: 5px;
-    }
-  }
-  blockquote {
-    border: 1px solid #e3e3e3;
-    border-left: 5px solid $babyblue;
-    margin: 0 0 1em 0;
-    padding: 0 20px;
-  }
-  .more {
-    margin-top: 30px;
-  }
-}
 </style>

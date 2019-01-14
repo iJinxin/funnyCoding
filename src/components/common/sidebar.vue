@@ -54,7 +54,7 @@ export default {
     return {
       navItems: Navigations.navItems,
       barHeight: '',
-      isCollapse: false,
+      isCollapse: true,
       defaultActive: '',
     };
   },
