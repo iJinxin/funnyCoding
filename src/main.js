@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import ElementUI from 'element-ui';
-import 'video.js/dist/video-js.css';
 import 'element-ui/lib/theme-chalk/index.css';
 import './assets/font/iconfont.css';
 import App from './App';

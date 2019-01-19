@@ -7,10 +7,12 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const commonWebpackConfig = require('./webpack.common.js');
 const config = require('./config');
+const utils = require('./utils');
 
 // 设置NODE_ENV为开发环境
 process.env.NODE_ENV = 'development';
@@ -18,28 +20,11 @@ process.env.NODE_ENV = 'development';
 const devWebpackConfig = merge(commonWebpackConfig, {
   mode: 'development',
   module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-        ]
-      },
-      {
-        test: /\.(sa|sc)ss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
-        ]
-      }
-    ]
+    rules: utils.styleLoaders({sourceMap: true, usePostCSS: true})
   },
   devtool: config.dev.devtool,
   devServer: {
-    contentBase: false, // what is CopyWebpackPlugin
+    // contentBase: false, // what is CopyWebpackPlugin
     hot: true,   // hot
     host: config.dev.host,
     port: config.dev.port
@@ -51,8 +36,17 @@ const devWebpackConfig = merge(commonWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      inject: true
-    })
+      inject: true,
+      chunksSortMode: 'none'
+    }),
+
+    // new CopyWebpackPlugin([
+    //   {
+    //     from: path.resolve(__dirname, '../static'),
+    //     to: 'static',
+    //     ignore: ['.*']
+    //   }
+    // ])
   ]
 });
 
