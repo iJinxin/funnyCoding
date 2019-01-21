@@ -1,5 +1,5 @@
+'use strict';
 const path = require('path');
-const HtmlWebpackPlugins = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const config = require('./config');
 const utils = require('./utils');
@@ -9,54 +9,69 @@ const resolve = (dir) => {
   return path.join(__dirname, '..', dir);
 };
 
+// eslint rules
+const createLintingRule = () => ({
+  test: /\.(js|vue)$/,
+  loader: 'eslint-loader',
+  enforce: 'pre',
+  include: [resolve('src', resolve('test'))],
+  options: {
+    formatter: require('eslint-friendly-formatter'),
+    emitWarning: !config.dev.showEslintErrorsInOverlay
+  }
+});
+
 module.exports = {
+  context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
   },
   output: {
+    path: config.build.assetsRoot,
     filename: '[name].[hash].js',
-    path: path.resolve(__dirname, 'dist')
+    publicPath:
+      process.env.NODE_ENV === 'production'
+        ? config.build.assetsPublicPath
+        : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.ems.js',
+      // 'vue$': 'vue/dist/vue.ems.js',
       '@': resolve('src')
     }
   },
   module: {
     rules: [
+      ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        // options: {
-        //   // https://vue-loader.vuejs.org/guide/asset-url.html#transform-rules
-        //   transformAssetUrls: {
-        //     video: ['src', 'poster'],
-        //     source: 'src',
-        //     img: 'src',
-        //     image: 'xlink:href'
-        //   }
-        // }
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        // exclude: file => (
-        //   /node_modules/.test(file) &&
-        //     !/\.vue\.js/.test(file)
-        // ),
+        include: [
+          resolve('src'),
+          resolve('test'),
+          resolve('node_modules/webpack-dev-server/client')
+        ]
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-sprite-loader',
+        include: [resolve('src/icons')],
         options: {
-          presets: ['@babel/preset-env'],
-          plugins: ['@babel/plugin-transform-runtime']
+          symbolId: 'icon-[name]'
         }
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'file-loader',
+        loader: 'url-loader',
+        exclude: [resolve('src/icons')],
         options: {
           limit: 10000,
-          outputPath: 'img/'
+          name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
       },
       {
@@ -64,7 +79,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          outputPath: 'video/'
+          name: utils.assetsPath('media/[name].[hash:7].[ext]')
         }
       },
       {
@@ -72,7 +87,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          outputPath: 'font/'
+          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       }
     ]
@@ -81,5 +96,17 @@ module.exports = {
     // The plugin is required!
     // https://vue-loader.vuejs.org/guide/#manual-configuration
     new VueLoaderPlugin()
-  ]
+  ],
+  node: {
+    // prevent webpack from injecting useless setImmediate polyfill because Vue
+    // source contains it (although only uses it if it's native).
+    setImmediate: false,
+    // prevent webpack from injecting mocks to Node native modules
+    // that does not make sense for the client
+    dgram: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    child_process: 'empty'
+  }
 };

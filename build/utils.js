@@ -1,10 +1,18 @@
+'use strict';
 const path = require('path');
 // 提取css代码
 // https://webpack.js.org/plugins/mini-css-extract-plugin/
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-exports.assetsPath = function (_path) {
+const config = require('./config');
 
+exports.assetsPath = function (_path) {
+  const assetsSubDirectory =
+    process.env.NODE_ENV === 'production'
+      ? config.build.assetsSubDirectory
+      : config.dev.assetsSubDirectory;
+
+  return path.posix.join(assetsSubDirectory, _path);
 };
 
 exports.cssLoaders = (options) => {
@@ -42,7 +50,15 @@ exports.cssLoaders = (options) => {
   return {
     css: generateLoaders(),
     postcss: generateLoaders(),
-    scss: generateLoaders('sass')
+    sass: generateLoaders('sass', {
+      indentedSyntax: true
+    }),
+    scss: generateLoaders('sass').concat({
+      loader: 'sass-resources-loader',
+      options: {
+        resources: path.resolve(__dirname, '../src/assets/style/index.scss')
+      }
+    })
   }
 
 };
@@ -59,4 +75,5 @@ exports.styleLoaders = (options) => {
       use: loader
     });
   });
+  return output;
 };
