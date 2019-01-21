@@ -1,28 +1,29 @@
 <template>
-<el-tabs v-model="activeName" class="waterfall-tabs">
-  <el-tab-pane label="等宽瀑布流" name="aequilate">
-    <Aequilate-waterfall></Aequilate-waterfall>
-  </el-tab-pane>
-  <el-tab-pane label="等高瀑布流" name="isometry">
-    <Isometry-waterfall></Isometry-waterfall>
-  </el-tab-pane>
-</el-tabs>
+  <el-tabs v-model="activeName" class="waterfall-tabs">
+    <el-tab-pane label="等宽瀑布流" name="aequilate">
+      <Aequilate-waterfall/>
+    </el-tab-pane>
+    <el-tab-pane label="等高瀑布流" name="isometry">
+      <Isometry-waterfall/>
+    </el-tab-pane>
+  </el-tabs>
 </template>
 
 <script>
-import AequilateWaterfall from '@/components/waterfall/AequilateWaterfall';
-import IsometryWaterfall from '@/components/waterfall/IsometryWaterfall';
+import AequilateWaterfall from "@/components/waterfall/AequilateWaterfall";
+import IsometryWaterfall from "@/components/waterfall/IsometryWaterfall";
 
 export default {
-  name: 'Waterfall',
+  name: "Waterfall",
+  components: {
+    AequilateWaterfall,
+    IsometryWaterfall
+  },
   data() {
     return {
-      activeName: 'aequilate',
+      activeName: "aequilate"
     };
-  },
-  components: {
-    AequilateWaterfall, IsometryWaterfall,
-  },
+  }
 };
 </script>
 

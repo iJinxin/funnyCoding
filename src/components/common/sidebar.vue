@@ -2,11 +2,17 @@
   <nav ref="sidebar" class="global-nav">
     <el-scrollbar class="default-scrollbar" wrap-class="default-scrollbar__wrap">
       <div class="nav-control display_flex justify-content__space-between">
-        <div class="nav-control__menu display_flex justify-content__center align-items__center pointer" @click="toggleMenu">
+        <div
+          class="nav-control__menu display_flex justify-content__center align-items__center pointer"
+          @click="toggleMenu"
+        >
           <i class="iconfont ali-icon-caidan"></i>
         </div>
-        <div class="nav-control__home display_flex justify-content__center align-items__center"
-             v-bind:class="{hidden: isCollapse}" @click="backHome()">
+        <div
+          class="nav-control__home display_flex justify-content__center align-items__center"
+          :class="{hidden: isCollapse}"
+          @click="backHome()"
+        >
           <i class="iconfont ali-icon-home" style="font-size: 21px"></i>
         </div>
       </div>
@@ -18,26 +24,27 @@
         @select="onSelect"
         :default-active="$route.path"
         router
-        text-color="#b4bcc8">
+        text-color="#b4bcc8"
+      >
         <template v-for="item in navItems">
           <template v-if="item.subItems">
             <el-submenu :index="item.index" :key="item.index">
               <template slot="title">
-                <i class="iconfont" v-bind:class="item.icon"></i>
-                <span>{{item.name}}</span>
+                <i class="iconfont" :class="item.icon"></i>
+                <span>{{ item.name }}</span>
               </template>
               <template v-for="sub in item.subItems">
                 <el-menu-item :index="sub.index" :key="sub.index">
-                  <i class="iconfont" v-bind:class="sub.icon"></i>
-                  {{sub.name}}
+                  <i class="iconfont" :class="sub.icon"></i>
+                  {{ sub.name }}
                 </el-menu-item>
               </template>
             </el-submenu>
           </template>
           <template v-else>
             <el-menu-item :index="item.index" :key="item.index">
-              <i class="iconfont" v-bind:class="item.icon"></i>
-              <span slot="title">{{item.name}}</span>
+              <i class="iconfont" :class="item.icon"></i>
+              <span slot="title">{{ item.name }}</span>
             </el-menu-item>
           </template>
         </template>
@@ -46,16 +53,16 @@
   </nav>
 </template>
 <script>
-import Navigations from '@/assets/data/navigator.json';
+import Navigations from "@/assets/data/navigator.json";
 
 export default {
-  name: 'sidebar',
+  name: "Sidebar",
   data() {
     return {
       navItems: Navigations.navItems,
-      barHeight: '',
+      barHeight: "",
       isCollapse: true,
-      defaultActive: '',
+      defaultActive: ""
     };
   },
   mounted() {
@@ -72,13 +79,13 @@ export default {
     },
     backHome() {
       this.isCollapse = true;
-      this.defaultActive = 'home';
-      this.$router.push({ name: 'Home' });
+      this.defaultActive = "home";
+      this.$router.push({ name: "Home" });
     },
     onSelect() {
       this.isCollapse = true;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss">
@@ -95,7 +102,7 @@ export default {
       width: 58px;
       transition: 0.3s;
       overflow: hidden;
-      > i{
+      > i {
         color: $white;
         font-size: 16px;
       }
@@ -126,22 +133,24 @@ export default {
   .el-submenu__title {
     height: 44px;
     line-height: 44px;
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background: $darkish;
     }
   }
-  .el-menu-item, .el-submenu {
+  .el-menu-item,
+  .el-submenu {
     border-top: 1px solid #3d4957;
     > i {
       vertical-align: unset;
     }
   }
 }
-  .el-menu--vertical {
-    .el-menu-item {
-      height: 40px;
-      line-height: 40px;
-    }
+.el-menu--vertical {
+  .el-menu-item {
+    height: 40px;
+    line-height: 40px;
   }
+}
 </style>
 

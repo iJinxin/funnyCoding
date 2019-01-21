@@ -10,39 +10,39 @@
 </template>
 
 <script>
-import vFooter from '@/components/common/Footer';
-import { isLogin } from '@/service/user/baseInfo';
+import vFooter from "@/components/common/Footer";
+import { isLogin } from "@/service/user/baseInfo";
 
 export default {
+  components: {
+    vFooter
+  },
   data() {
     return {};
-  },
-  components: {
-    vFooter,
   },
   beforeCreate() {
     const userLogin = isLogin();
     if (!userLogin) {
       // this.$router.replace({name: 'Login'});
     }
-  },
+  }
 };
 </script>
 
 <style lang="scss">
-  .app-wrapper {
-    padding-bottom: $footer_height;
-    box-sizing: border-box;
-    .app-main {
-      margin-left: 58px;
-    }
-    .app-footer {
-      height: $footer_height;
-      background: $dark;
-      position: absolute;
-      left: 58px;
-      right: 0;
-      bottom: 0;
-    }
+.app-wrapper {
+  padding-bottom: $footer_height;
+  box-sizing: border-box;
+  .app-main {
+    margin-left: 58px;
   }
+  .app-footer {
+    height: $footer_height;
+    background: $dark;
+    position: absolute;
+    left: 58px;
+    right: 0;
+    bottom: 0;
+  }
+}
 </style>

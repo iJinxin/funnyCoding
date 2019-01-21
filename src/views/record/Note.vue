@@ -9,18 +9,21 @@
         <template v-for="note in noteList">
           <div :key="note._id" class="note-item display_flex flex_direction__column">
             <div class="display_flex align-items__center">
-              <span class="note-item__date">{{note.date}}</span>
-              <i class="iconfont ali-icon-delete note-item__button pointer" @click="removeNote(note._id)"></i>
+              <span class="note-item__date">{{ note.date }}</span>
+              <i
+                class="iconfont ali-icon-delete note-item__button pointer"
+                @click="removeNote(note._id)"
+              ></i>
               <!--<button class="note-item__button text gray" @click="removeNote(note._id)">删除</button>-->
             </div>
-            <span class="note-item__content">{{note.content}}</span>
+            <span class="note-item__content">{{ note.content }}</span>
           </div>
         </template>
       </section>
       <el-dialog title="添加note" :visible.sync="addNoteVisible">
         <el-form :model="noteForm" :rules="rules" ref="noteForm">
           <el-form-item prop="noteContent">
-            <el-input type="textarea" v-model="noteForm.noteContent"></el-input>
+            <el-input type="textarea" v-model="noteForm.noteContent"/>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -33,25 +36,25 @@
 </template>
 
 <script>
-import CookieHandler from '@/utils/cookieHandler';
-import { $get, $post } from '../../api/http';
-import $api from '../../api/api';
+import CookieHandler from "@/utils/cookieHandler";
+import { $get, $post } from "../../api/http";
+import $api from "../../api/api";
 
 export default {
-  name: 'Article',
+  name: "Article",
   data() {
     return {
       addNoteVisible: false,
       noteForm: {
-        noteContent: '',
+        noteContent: ""
       },
       rules: {
         noteContent: [
-          { required: true, message: '是不是忘了点什么？', trigger: 'blur' },
-          { max: 160, message: 'too long to hold on', trigger: 'change' },
-        ],
+          { required: true, message: "是不是忘了点什么？", trigger: "blur" },
+          { max: 160, message: "too long to hold on", trigger: "change" }
+        ]
       },
-      noteList: [],
+      noteList: []
     };
   },
   created() {
@@ -62,8 +65,8 @@ export default {
       this.addNoteVisible = true;
     },
     queryNotes() {
-      const USER_ID = CookieHandler.get('USER_ID');
-      $get($api.query_notes, { userId: USER_ID }).then((res) => {
+      const USER_ID = CookieHandler.get("USER_ID");
+      $get($api.query_notes, { userId: USER_ID }).then(res => {
         [...this.noteList] = res;
         this.initYears();
       });
@@ -73,7 +76,7 @@ export default {
         const firstYear = this.noteList[0];
         firstYear.marked = true;
         let currentYear = new Date(this.noteList[0].timestamp).getFullYear();
-        this.noteList.forEach((item) => {
+        this.noteList.forEach(item => {
           const date = new Date(item.timestamp);
           const year = date.getFullYear();
           const month = date.getMonth() + 1;
@@ -88,22 +91,24 @@ export default {
       }
     },
     submit(formName) {
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate(valid => {
         if (valid) {
-          const USER_ID = CookieHandler.get('USER_ID');
+          const USER_ID = CookieHandler.get("USER_ID");
           const body = {
             userId: USER_ID,
-            content: this.noteForm.noteContent,
+            content: this.noteForm.noteContent
           };
-          $post($api.add_note, body).then(() => {
-            this.$message.success('添加成功');
-            this.noteForm.noteContent = '';
-            this.addNoteVisible = false;
-            this.queryNotes();
-          }).catch(() => {
-            this.$message.error('添加失败');
-            this.addNoteVisible = false;
-          });
+          $post($api.add_note, body)
+            .then(() => {
+              this.$message.success("添加成功");
+              this.noteForm.noteContent = "";
+              this.addNoteVisible = false;
+              this.queryNotes();
+            })
+            .catch(() => {
+              this.$message.error("添加失败");
+              this.addNoteVisible = false;
+            });
         }
       });
     },
@@ -114,8 +119,8 @@ export default {
     },
     cancel() {
       this.addNoteVisible = false;
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -133,7 +138,7 @@ export default {
     > span {
       font-size: 18px;
     }
-    >i {
+    > i {
       position: absolute;
       right: 0;
       z-index: 1;

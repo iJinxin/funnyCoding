@@ -1,62 +1,69 @@
 <template>
-<div class="login-page display_flex justify-content__center align-items__center" ref="login">
-  <div class="login-page__form">
-    <el-form :model="loginForm" :rules="rules" ref="loginForm" label-width="60px">
-      <el-form-item label="账号" prop="account">
-        <el-input v-model="loginForm.account"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="password">
-        <el-input type="password" v-model="loginForm.password" @keyup.enter.native="submit('loginForm')"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" class="submit-btn" @click="submit('loginForm')">登录</el-button>
-      </el-form-item>
-    </el-form>
+  <div class="login-page display_flex justify-content__center align-items__center" ref="login">
+    <div class="login-page__form">
+      <el-form :model="loginForm" :rules="rules" ref="loginForm" label-width="60px">
+        <el-form-item label="账号" prop="account">
+          <el-input v-model="loginForm.account"/>
+        </el-form-item>
+        <el-form-item label="密码" prop="password">
+          <el-input
+            type="password"
+            v-model="loginForm.password"
+            @keyup.enter.native="submit('loginForm')"
+          />
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" class="submit-btn" @click="submit('loginForm')">登录</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
   </div>
-</div>
 </template>
 <script>
-import { $post } from '@/api/http';
-import $api from '@/api/api';
-import CookieHandler from '@/utils/cookieHandler';
+import { $post } from "@/api/http";
+import $api from "@/api/api";
+import CookieHandler from "@/utils/cookieHandler";
 
 export default {
-  name: 'Login',
+  name: "Login",
   data() {
     return {
       loginForm: {
-        account: '',
-        password: '',
+        account: "",
+        password: ""
       },
       rules: {
-        account: [
-          { required: true, message: '请输入账号', trigger: 'blur' },
-        ],
-        password: [
-          { required: true, message: '请输入密码', trigger: 'blur' },
-        ],
-      },
+        account: [{ required: true, message: "请输入账号", trigger: "blur" }],
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }]
+      }
     };
   },
   mounted() {
-    this.$refs.login.style.height = `${document.documentElement.clientHeight}px`;
+    this.$refs.login.style.height = `${
+      document.documentElement.clientHeight
+    }px`;
   },
   methods: {
     submit(formName) {
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate(valid => {
         if (valid) {
           // do login
           const body = Object.assign({}, this.loginForm);
-          $post($api.login, body).then((res) => {
-            CookieHandler.set('USER_ID', res.id).set('USER_ACCOUNT', res.account);
-            this.$router.push({ name: 'Home' });
-          }).catch((error) => {
-            this.$message(error.message);
-          });
+          $post($api.login, body)
+            .then(res => {
+              CookieHandler.set("USER_ID", res.id).set(
+                "USER_ACCOUNT",
+                res.account
+              );
+              this.$router.push({ name: "Home" });
+            })
+            .catch(error => {
+              this.$message(error.message);
+            });
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -70,7 +77,7 @@ export default {
   .login-page__form {
     width: 360px;
     margin-top: -100px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 4px;
     padding: 20px 20px 0 10px;
   }

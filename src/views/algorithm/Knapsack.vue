@@ -1,15 +1,15 @@
 <template>
-<div>{{maxValue}}</div>
+  <div>{{ maxValue }}</div>
 </template>
 
 <script>
-import Knapsack from '@/service/Knapsack';
+import Knapsack from "@/service/Knapsack";
 
 export default {
-  name: 'Knapsack',
+  name: "Knapsack",
   data() {
     return {
-      maxValue: 0,
+      maxValue: 0
     };
   },
   mounted() {
@@ -18,11 +18,10 @@ export default {
   methods: {
     test() {
       this.maxValue = Knapsack.getValue(4, 5);
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
-
 </style>

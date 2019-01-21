@@ -1,13 +1,12 @@
 <template>
-<div class="isometry-waterfall"></div>
+  <div class="isometry-waterfall"></div>
 </template>
 
 <script>
 export default {
-  name: 'IsometryWaterfall',
+  name: "IsometryWaterfall"
 };
 </script>
 
 <style scoped>
-
 </style>

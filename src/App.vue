@@ -6,23 +6,23 @@
 </template>
 
 <script>
-import sidebar from '@/components/common/sidebar';
+import sidebar from "@/components/common/sidebar";
 
 export default {
-  name: 'app',
+  name: "App",
+  components: {
+    sidebar
+  },
   data() {
     return {};
-  },
-  components: {
-    sidebar,
-  },
+  }
 };
 </script>
 
 <style lang="scss">
-  .funny-coding {
-    position: relative;
-    background: #fff;
-    min-height: 100%;
-  }
+.funny-coding {
+  position: relative;
+  background: #fff;
+  min-height: 100%;
+}
 </style>
