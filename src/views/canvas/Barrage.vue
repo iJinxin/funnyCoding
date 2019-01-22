@@ -5,11 +5,7 @@
         <i class="iconfont ali-icon-notify"></i>
         <span>
           视频素材取自
-          <a
-            class="info-link"
-            target="_blank"
-            :href="videoSource"
-          >bilibili</a>
+          <a class="info-link" target="_blank" :href="videoSource">bilibili</a>
           如有侵权，请联系我删除。
         </span>
       </section>
@@ -57,7 +53,8 @@ export default {
     return {
       canvas: null,
       video: null,
-      videoSource: 'https://www.bilibili.com/video/av2271112?from=search&seid=3934341032502483606',
+      videoSource:
+        "https://www.bilibili.com/video/av2271112?from=search&seid=3934341032502483606",
       canvasBarrage: null,
       barrages: [],
       barrage: {

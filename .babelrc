@@ -4,18 +4,15 @@
       "@babel/preset-env",
       {
         "modules": false,
-        "targets": {
-          "browsers": [
-            "chrome 65"
-          ]
-        }
+        "targets": "> 0.25%, not dead",
+        // for uglifyjs...
+        // "forceAllTransforms": api.env("production")
       }
     ]
   ],
   "plugins": [
     "transform-vue-jsx",
-    [
-      "@babel/plugin-transform-runtime"
-    ]
+    ["@babel/plugin-transform-runtime"],
+    ["@babel/plugin-proposal-pipeline-operator", { "proposal": "minimal" }]
   ]
 }

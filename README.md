@@ -6,6 +6,5 @@ coding for fun, coding for everything
 有时一些有趣的idea转瞬即逝，以后尽可能的在 funnyCoding 中记录下来。
 funnyCoding 并不是一个“后台管理系统”，它的每一个模块相互独立，互不影响。
 
-## 更多
-如果你发现我的代码有需要改进的地方，或者你有一些有趣的想法，欢迎PR！
-
+## 规范
+- [eslint-plugin-vue](https://vuejs.github.io/eslint-plugin-vue/)
