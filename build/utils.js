@@ -67,12 +67,7 @@ exports.cssLoaders = (options) => {
     sass: generateLoaders('sass', {
       indentedSyntax: true
     }),
-    scss: generateLoaders('sass').concat({
-      loader: 'sass-resources-loader',
-      options: {
-        resources: path.resolve(__dirname, '../src/assets/style/index.scss')
-      }
-    })
+    scss: generateLoaders('sass')
   }
 
 };

@@ -133,6 +133,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/assets/style/variables.scss';
 .el-tabs__item.is-active {
   color: $babyblue;
 }

@@ -89,6 +89,7 @@ export default {
 };
 </script>
 <style lang="scss">
+@import '@/assets/style/variables.scss';
 .global-nav {
   position: absolute;
   z-index: 10;

@@ -125,6 +125,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/assets/style/variables.scss';
 .note-v1 {
   .note-inner {
     width: 500px;

@@ -4,23 +4,23 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-const Index = r => require.ensure([], () => r(require('@/views/index')), 'Index');
-const Home = r => require.ensure([], () => r(require('@/views/home/Home')), 'Home');
-const Login = r => require.ensure([], () => r(require('@/views/login/Login')), 'Login');
+const Index = () => import('@/views/index');
+const Home = () => import('@/views/home/Home');
+const Login = () => import('@/views/login/Login');
 // tools
-const Calculator = r => require.ensure([], () => r(require('@/views/tools/Calculator')), 'Calculator');
+const Calculator = () => import('@/views/tools/Calculator');
 // note
-const Task = r => require.ensure([], () => r(require('@/views/record/Task')), 'Task');
-const Note = r => require.ensure([], () => r(require('@/views/record/Note')), 'Article');
+const Task = () => import('@/views/record/Task');
+const Note = () => import('@/views/record/Note');
 // canvas
-const Barrage = r => require.ensure([], () => r(require('@/views/canvas/Barrage')), 'Barrage');
+const Barrage = () => import('@/views/canvas/Barrage');
 // algorithm
-const Knapsack = r => require.ensure([], () => r(require('@/views/algorithm/Knapsack')), 'Knapsack');
-const Waterfall = r => require.ensure([], () => r(require('@/views/algorithm/Waterfall')), 'Waterfall');
+const Knapsack = () => import('@/views/algorithm/Knapsack');
+const Waterfall = () => import('@/views/algorithm/Waterfall');
 // visualization
-const Visualization = r => require.ensure([], () => r(require('@/views/visualization/Visualization')), 'Visualization');
+const Visualization = () => import('@/views/visualization/Visualization');
 // about
-const About = r => require.ensure([], () => r(require('@/views/about/About')), 'About');
+const About = () => import('@/views/about/About');
 export default new Router({
   routes: [
     {

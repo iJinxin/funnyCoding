@@ -30,6 +30,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/assets/style/variables.scss';
 .app-wrapper {
   padding-bottom: $footer_height;
   box-sizing: border-box;

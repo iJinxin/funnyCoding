@@ -27,12 +27,12 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
   mode: 'production',
   module: {
     rules: utils.styleLoaders({
-      sourceMap: true,
-      usePossCSS: true,
+      sourceMap: config.build.productionSourceMap,
+      usePostCSS: true,
       extract: true
     })
   },
-  devtool: config.build.devtool,
+  devtool: config.build.productionSourceMap ? config.build.devtool : false,
   // 打包后的文件放置在根目录下的dist文件中
   output: {
     path: config.build.assetsRoot,
@@ -74,7 +74,7 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
       if (chunk.name) {
         return chunk.name
       }
-      const modules = Array.from(chunk.modulesIterable)
+      const modules = Array.from(chunk.modulesIterable);
       if (modules.length > 1) {
         const hash = require('hash-sum')
         const joinedHash = hash(modules.map(m => m.id).join('_'))
@@ -86,16 +86,14 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
         return modules[0].id
       }
     }),
-    // 代码压缩
     // keep module.id stable，node_modules包更新频率低，可长缓存在客户端。
     new webpack.HashedModuleIdsPlugin(),
   ],
   optimization: {
-    // js分片 https://webpack.js.org/plugins/split-chunks-plugin/#optimization-splitchunks
-    // node_modules 被引用模块单独打包
-    // 不属于node_modules的公用模块打包
     splitChunks: {
       chunks: 'all',  // all, async异步, inline同步, default async
+      minSize: 30000,
+      minChunks: 1,
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
@@ -107,12 +105,7 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
           test: /[\\/]node_modules[\\/]element-ui[\\/]/,
           priority: 20, // element-ui单独打包，权重大于venders和app
           name: 'venders-elementUI'
-        },
-        // common: {
-        //   test: /[\\/]src[\\/]/,
-        //   minChunks: 2,
-        //   name: 'commons'
-        // }
+        }
       }
     },
     runtimeChunk: 'single',
@@ -121,7 +114,7 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
       new UglifyJSPlugin({
         cache: true,
         parallel: true,
-        sourceMap: true // set true if you want js source maps
+        sourceMap: config.build.productionSourceMap // set true if you want js source maps
       }),
       // css压缩
       new OptimizeCSSAssetsPlugin()

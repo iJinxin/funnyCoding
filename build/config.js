@@ -27,6 +27,9 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
 
+    // source Maps
+    productionSourceMap: false,
+
     // 发布环境更关心代码体积
     // https://webpack.js.org/configuration/devtool/#production
     devtool: 'hidden-source-map'
