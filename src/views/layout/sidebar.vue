@@ -59,9 +59,7 @@ export default {
   name: "Sidebar",
   data() {
     return {
-      navItems: Navigations.navItems,
-      barHeight: "",
-      defaultActive: ""
+      navItems: Navigations.navItems
     };
   },
   computed: {
@@ -70,21 +68,12 @@ export default {
       return this.sidebarCollapse;
     }
   },
-  mounted() {
-    this.barHeight = `${document.documentElement.clientHeight}`;
-    this.$refs.sidebar.style.height = `${this.barHeight}px`;
-    window.onresize = () => {
-      this.barHeight = `${document.documentElement.clientHeight}`;
-      this.$refs.sidebar.style.height = `${this.barHeight}px`;
-    };
-  },
   methods: {
     toggleMenu() {
       this.$store.dispatch("toggleSidebar");
     },
     backHome() {
       this.isCollapse = true;
-      this.defaultActive = "home";
       this.$router.push({ name: "Home" });
     }
   }
@@ -93,9 +82,11 @@ export default {
 <style lang="scss">
 @import "@/assets/style/variables.scss";
 .global-nav {
-  position: absolute;
+  position: fixed;
   z-index: 10;
   left: 0;
+  top: 0;
+  bottom: 0;
   background: $deepGray;
   .nav-control {
     height: 46px;

@@ -1,49 +1,42 @@
 <template>
   <div class="app-wrapper layout-v1">
-    <main class="app-main">
+    <sidebar/>
+    <main class="main-container" :class="{'collapse':sidebarCollapse}">
       <router-view/>
     </main>
-    <footer class="app-footer">
-      <v-footer/>
-    </footer>
   </div>
 </template>
 
 <script>
-import vFooter from "@/components/common/Footer";
-import { isLogin } from "@/service/user/baseInfo";
+import sidebar from "@/views/layout/sidebar"
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    vFooter
+    sidebar
   },
   data() {
     return {};
   },
-  beforeCreate() {
-    const userLogin = isLogin();
-    if (!userLogin) {
-      // this.$router.replace({name: 'Login'});
-    }
+  computed: {
+    ...mapGetters([
+      'sidebarCollapse'
+    ])
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/style/variables.scss';
 .app-wrapper {
-  padding-bottom: $footer_height;
-  box-sizing: border-box;
-  .app-main {
-    margin-left: 58px;
+  height: 100%;
+  .main-container {
+    min-height: 100%;
+    margin-left: 200px;
+    transition: margin-left 0.3s;
   }
-  .app-footer {
-    height: $footer_height;
-    background: $dark;
-    position: absolute;
-    left: 58px;
-    right: 0;
-    bottom: 0;
+  .main-container.collapse {
+    margin-left: 58px;
   }
 }
 </style>

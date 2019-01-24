@@ -1,18 +1,12 @@
 <template>
   <div id="app" class="funny-coding">
-    <sidebar/>
     <router-view/>
   </div>
 </template>
 
 <script>
-import sidebar from "@/components/common/sidebar";
-
 export default {
   name: "App",
-  components: {
-    sidebar
-  },
   data() {
     return {};
   }
@@ -23,6 +17,6 @@ export default {
 .funny-coding {
   position: relative;
   background: #fff;
-  min-height: 100%;
+  height: 100%;
 }
 </style>
