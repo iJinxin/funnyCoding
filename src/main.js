@@ -5,7 +5,7 @@ import './assets/font/iconfont.css';
 import App from './App';
 import jfFilters from './utils/filter';
 
-import store from './store/store';
+import store from './store/index';
 import router from './router';
 
 import './assets/style/index.scss'; // global scss
