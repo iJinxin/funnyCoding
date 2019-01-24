@@ -2,6 +2,7 @@
   <div class="app-wrapper layout-v1">
     <sidebar/>
     <main class="main-container" :class="{'collapse':sidebarCollapse}">
+      <header-nav/>
       <router-view/>
     </main>
   </div>
@@ -9,11 +10,12 @@
 
 <script>
 import sidebar from "@/views/layout/sidebar"
+import headerNav from "@/views/layout/headerNav"
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    sidebar
+    sidebar, headerNav
   },
   data() {
     return {};
