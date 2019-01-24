@@ -1,5 +1,5 @@
 const getters = {
-  sidebar: state => state.app.sidebar
+  sidebarOpened: state => state.app.sidebarOpened
 }
 
 export default getters;

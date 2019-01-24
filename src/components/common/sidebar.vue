@@ -4,7 +4,7 @@
       <div class="nav-control display_flex justify-content__space-between">
         <div
           class="nav-control__menu display_flex justify-content__center align-items__center pointer"
-          @click="toggleMenu"
+          @click="toggleMenu()"
         >
           <i class="iconfont ali-icon-caidan"></i>
         </div>
@@ -21,7 +21,6 @@
         mode="vertical"
         :collapse="isCollapse"
         unique-opened
-        @select="onSelect"
         :default-active="$route.path"
         router
         text-color="#b4bcc8"
@@ -54,6 +53,7 @@
 </template>
 <script>
 import Navigations from "@/assets/data/navigator.json";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Sidebar",
@@ -61,9 +61,14 @@ export default {
     return {
       navItems: Navigations.navItems,
       barHeight: "",
-      isCollapse: true,
       defaultActive: ""
     };
+  },
+  computed: {
+    ...mapGetters(["sidebarCollapse"]),
+    isCollapse() {
+      return this.sidebarCollapse;
+    }
   },
   mounted() {
     this.barHeight = `${document.documentElement.clientHeight}`;
@@ -75,21 +80,18 @@ export default {
   },
   methods: {
     toggleMenu() {
-      this.isCollapse = !this.isCollapse;
+      this.$store.dispatch("toggleSidebar");
     },
     backHome() {
       this.isCollapse = true;
       this.defaultActive = "home";
       this.$router.push({ name: "Home" });
-    },
-    onSelect() {
-      this.isCollapse = true;
     }
   }
 };
 </script>
 <style lang="scss">
-@import '@/assets/style/variables.scss';
+@import "@/assets/style/variables.scss";
 .global-nav {
   position: absolute;
   z-index: 10;
