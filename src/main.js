@@ -8,7 +8,7 @@ import jfFilters from './utils/filter';
 import store from './store/store';
 import router from './router';
 
-// import './assets/style/index.scss'; // global scss
+import './assets/style/index.scss'; // global scss
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI, { size: 'small' });
