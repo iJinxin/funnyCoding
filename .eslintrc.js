@@ -8,9 +8,6 @@ module.exports = {
     // override/add rules settings here, such as:
     // 'vue/no-unused-vars': 'error'
 
-    // 使用分号
-    semi: "error",
-
     // 关闭vue/attributes-order
     "vue/attributes-order": ["error", {
       "order": []

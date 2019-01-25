@@ -4,7 +4,9 @@
     <main class="main-container display_flex flex_direction__column" :class="{'collapse':sidebarCollapse}">
       <header-nav/>
       <section class="app-main flex_1">
-        <router-view/>
+        <keep-alive>
+          <router-view/>
+        </keep-alive>
       </section>
     </main>
   </div>
@@ -16,6 +18,7 @@ import headerNav from "@/views/layout/headerNav";
 import { mapGetters } from "vuex";
 
 export default {
+  name: 'Layout',
   components: {
     sidebar,
     headerNav
@@ -30,7 +33,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style/variables.scss";
 .app-wrapper {
   height: 100%;
   .main-container {
