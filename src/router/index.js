@@ -25,8 +25,15 @@ const routeMap = [
   },
   {
     path: '/about',
-    name: 'About',
-    component: () => import('@/views/about/About')
+    component: Layout,
+    redirect: '/about/',
+    children: [
+      {
+        path: '/',
+        name: 'About',
+        component: () => import('@/views/about/About')
+      }
+    ]
   },
   funnyCodingRouter
 ]

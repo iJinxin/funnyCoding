@@ -1,4 +1,15 @@
 module.exports = {
+  root: true,
+  parserOptions: {
+    parser: 'babel-eslint',
+    "ecmaVersion": 2017,
+    sourceType: 'module'
+  },
+  env: {
+    browser: true,
+    node: true,
+    es6: true
+  },
   extends: [
     // add more generic rulesets here, such as:
     // 'eslint:recommended',
