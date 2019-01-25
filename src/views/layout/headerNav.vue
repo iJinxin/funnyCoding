@@ -19,17 +19,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 header {
-  height: 50px;
+  height: 48px;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.12), 0 0 3px 0 rgba(0,0,0,.04);
 }
 .toggle-menu {
-  height: 50px;
-  line-height: 50px;
+  height: 48px;
+  line-height: 48px;
   padding: 0 15px;
   float: left;
-  > i {
-    font-size: 16px;
-  }
 }
 </style>
 

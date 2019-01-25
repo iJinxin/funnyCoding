@@ -79,14 +79,10 @@ export default {
   .el-menu--collapse {
     width: 58px;
   }
-  .el-menu-item {
-    height: 40px;
-    line-height: 40px;
-  }
   .el-menu-item,
   .el-submenu__title {
-    height: 44px;
-    line-height: 44px;
+    height: 48px;
+    line-height: 48px;
     &:hover,
     &:focus {
       background: $darkish;
