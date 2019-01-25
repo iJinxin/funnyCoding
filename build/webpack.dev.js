@@ -7,15 +7,15 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const commonWebpackConfig = require('./webpack.common.js');
 const config = require('./config');
 const utils = require('./utils');
 
-// 设置NODE_ENV为开发环境
-process.env.NODE_ENV = 'development';
+function resolve(dir) {
+  return path.join(__dirname, '..', dir)
+}
 
 const devWebpackConfig = merge(commonWebpackConfig, {
   mode: 'development',
@@ -33,11 +33,13 @@ const devWebpackConfig = merge(commonWebpackConfig, {
     // HMR热更新
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),  // HMR shows correct file name in console on update
+    // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
       inject: true,
-      chunksSortMode: 'none'
+      favicon: resolve('favicon.ico'),
+      title: 'funnyCoding'
     }),
 
     // new CopyWebpackPlugin([

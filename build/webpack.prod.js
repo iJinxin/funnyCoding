@@ -19,6 +19,10 @@ const commonWebpackConfig = require('./webpack.common.js');
 const config = require('./config');
 const utils = require('./utils');
 
+function resolve(dir) {
+  return path.join(__dirname, '..', dir)
+}
+
 // For NamedChunksPlugin
 const seen = new Set();
 const nameLength = 4;
@@ -55,10 +59,12 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
     }),
 
     // 生成发布版的index.html
+    // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: config.build.index,
       template: 'index.html',
       inject: true,
+      favicon: resolve('favicon.ico'),
       title: 'funnyCoding',
       minify: {
         removeComments: true,
