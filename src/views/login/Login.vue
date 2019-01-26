@@ -1,65 +1,84 @@
 <template>
   <div class="login-page display_flex justify-content__center align-items__center" ref="login">
     <div class="login-page__form">
-      <el-form :model="loginForm" :rules="rules" ref="loginForm" label-width="60px">
-        <el-form-item label="账号" prop="account">
-          <el-input v-model="loginForm.account"/>
+      <el-form :model="loginForm" :rules="loginRules" ref="loginForm" label-width="60px">
+        <el-form-item label="账号" prop="username">
+          <el-input v-model="loginForm.username"/>
         </el-form-item>
         <el-form-item label="密码" prop="password">
           <el-input
             type="password"
             v-model="loginForm.password"
-            @keyup.enter.native="submit('loginForm')"
+            @keyup.enter.native="login('loginForm')"
           />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" class="submit-btn" @click="submit('loginForm')">登录</el-button>
+          <el-button
+            type="primary"
+            class="submit-btn"
+            :loading="loading"
+            @click="login('loginForm')"
+          >登录</el-button>
         </el-form-item>
       </el-form>
     </div>
   </div>
 </template>
 <script>
-import { $post } from "@/api/http";
-import $api from "@/api/api";
-import CookieHandler from "@/utils/cookieHandler";
+import Cookies from "js-cookie"
 
 export default {
   name: "Login",
   data() {
-    return {
-      loginForm: {
-        account: "",
-        password: ""
-      },
-      rules: {
-        account: [{ required: true, message: "请输入账号", trigger: "blur" }],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }]
+    const validateUsername = (rule, value, callback) => {
+      if (value.length < 4) {
+        callback(new Error("The Username can not be less than 4 digits"));
+      } else {
+        callback();
       }
     };
+    const validatePassword = (rule, value, callback) => {
+      if (value.length < 6) {
+        callback(new Error("The Password can not be less than 6 digits"));
+      } else {
+        callback();
+      }
+    };
+    return {
+      loginForm: {
+        username: "",
+        password: ""
+      },
+      loginRules: {
+        username: [
+          { required: true, trigger: "blur", validator: validateUsername }
+        ],
+        password: [
+          { required: true, trigger: "blur", validator: validatePassword }
+        ]
+      },
+      loading: false,
+      redirect: null
+    };
   },
-  mounted() {
-    this.$refs.login.style.height = `${
-      document.documentElement.clientHeight
-    }px`;
+  watch: {
+    $route: {
+      handler: function(route) {
+        this.redirect = route.query && route.query.redirect
+      },
+      immediate: true
+    }
   },
   methods: {
-    submit(formName) {
+    login(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          // do login
-          const body = Object.assign({}, this.loginForm);
-          $post($api.login, body)
-            .then(res => {
-              CookieHandler.set("USER_ID", res.id).set(
-                "USER_ACCOUNT",
-                res.account
-              );
-              this.$router.push({ name: "Home" });
-            })
-            .catch(error => {
-              this.$message(error.message);
-            });
+          // a mock server will be created later
+          this.loading = true
+          Cookies.set("username", this.login.username)
+          this.$router.push({ path: this.redirect || "/" })
+        } else {
+          return false
         }
       });
     }

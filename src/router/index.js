@@ -35,6 +35,11 @@ const routeMap = [
       }
     ]
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/login/Login')
+  },
   funnyCodingRouter
 ]
 
