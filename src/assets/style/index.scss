@@ -1,8 +1,9 @@
-@import "variables.scss";
-@import "base.scss";
-@import "button.scss";
-@import "compatibility.scss";
-@import "docs.scss";
+@import "./variables.scss";
+@import "./base.scss";
+@import "./mixin.scss";
+@import "./button.scss";
+@import "./compatibility.scss";
+@import "./docs.scss";
 
 html {
   height: 100%;
@@ -19,4 +20,14 @@ body {
 
 #app {
   height: 100%;
+}
+
+.main-content {
+  flex: 1;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: -webkit-box;
+  display: -ms-flex;
+  display: flex;
+  flex-direction: column;
 }

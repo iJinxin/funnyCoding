@@ -1,72 +1,60 @@
 // ----------------------------------- //
-// 处理css reset ， 定义常用 css class
+// some common css here
 // ----------------------------------- //
 
-// ====== reset ====== //
-.reset_ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+// link
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
 }
 
-// 重置继承的line-height
-.normal_lineheight {
-  line-height: normal;
+a:focus,
+a:active {
+  outline: none;
 }
 
-// ====== Normal Class ====== //
-.main-content {
-  flex: 1;
-  display: -ms-flexbox;
-  display: -moz-box;
-  display: -webkit-box;
-  display: -ms-flex;
-  display: flex;
-  flex-direction: column;
+// float
+.float_left {
+  float: left
 }
-// 文字过长时显示...
+
+.float_right {
+  float: right;
+}
+
+.clearfix::after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+
+// padding and margin
+.no-padding {
+  padding: 0 !important;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+// cursor
+.pointer {
+  cursor: pointer !important;
+}
+
+// text truncate
 .text-truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-// 清除浮动
-.clearfix::after {
-  clear: both;
-  content: "";
-  display: table;
-}
-
-// 默认滚动条
-.default-scrollbar {
-  width: 100%;
-  height: 100%;
-}
-.default-scrollbar__wrap.el-scrollbar__wrap {
-  overflow-y: scroll;
-  overflow-x: unset;
-}
-
-// 自定义列表 dl-dt-dd
-.dl-menu {
+// for ul and ol
+.reset_list {
+  list-style: none;
   margin: 0;
-  line-height: 50px;
-  .dl-menu__dt {
-    float: left;
-    padding: 0 20px;
-    font-size: 14px;
-  }
-  .dl-menu__dd {
-    margin: 0;
-    padding: 0 20px;
-    float: left;
-    position: relative;
-    font-size: 14px;
-  }
-}
-
-// pointer
-.pointer {
-  cursor: pointer !important;
+  padding: 0;
 }
