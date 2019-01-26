@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="funny-coding">
+  <div id="app">
     <router-view/>
   </div>
 </template>
@@ -12,11 +12,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-.funny-coding {
-  position: relative;
-  background: #fff;
-  height: 100%;
-}
-</style>

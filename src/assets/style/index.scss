@@ -3,3 +3,20 @@
 @import "button.scss";
 @import "compatibility.scss";
 @import "docs.scss";
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  line-height: 1.5;
+  font-size: 14px;
+  color: #1a1a1a;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', 'Source Han Sans SC', 'Noto Sans CJK SC', 'WenQuanYi Micro Hei', sans-serif;
+}
+
+#app {
+  height: 100%;
+}
