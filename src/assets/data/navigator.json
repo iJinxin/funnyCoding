@@ -21,11 +21,6 @@
           "name": "瀑布流"
         }
       ]
-    },
-    {
-      "index": "/about",
-      "icon": "ali-icon-about",
-      "name": "关于"
     }
   ]
 }

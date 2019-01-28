@@ -23,18 +23,18 @@ const routeMap = [
       }
     ],
   },
-  {
-    path: '/about',
-    component: Layout,
-    redirect: '/about/',
-    children: [
-      {
-        path: '/',
-        name: 'About',
-        component: () => import('@/views/about/About')
-      }
-    ]
-  },
+  // {
+  //   path: '/about',
+  //   component: Layout,
+  //   redirect: '/about/',
+  //   children: [
+  //     {
+  //       path: '/',
+  //       name: 'About',
+  //       component: () => import('@/views/about/About')
+  //     }
+  //   ]
+  // },
   {
     path: '/login',
     name: 'Login',
@@ -44,6 +44,6 @@ const routeMap = [
 ]
 
 export default new Router({
-  scrollBehavior: () => ({ y:0 }),
+  scrollBehavior: () => ({ y: 0 }),
   routes: routeMap
 })
