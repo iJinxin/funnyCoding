@@ -1,6 +1,6 @@
 import axios from 'axios';
 import router from '@/router';
-import cookieHandler from '../utils/cookieHandler';
+import cookieHandler from './cookieHandler';
 
 const DEV_HOST = 'http://localhost:3001/';
 const BUILD_HOST = '/';

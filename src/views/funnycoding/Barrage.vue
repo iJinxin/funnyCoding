@@ -44,8 +44,8 @@
 
 <script>
 import CanvasBarrage from "@/service/Barrage";
-import { $get, $post } from "@/api/http";
-import $api from "@/api/api";
+import { $get, $post } from "@/utils/request";
+import { queryBarrages, addBarrage } from "@/api/funnycoding";
 
 export default {
   name: "Barrage",
@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     queryBarrages() {
-      $get($api.query_barrages).then(
+      $get(userApi.query_barrages).then(
         res => {
           this.barrages = res.data;
           this.initBarrages(this.barrages);
@@ -89,7 +89,7 @@ export default {
       this.barrage.time = this.video.currentTime;
       this.canvasBarrage.add(this.barrage);
       this.value = "";
-      $post($api.add_barrage, this.barrage);
+      $post(userApi.add_barrage, this.barrage);
     },
     initBarrages() {
       this.canvasBarrage = new CanvasBarrage(

@@ -1,7 +1,3 @@
-/**
- * 全局api
- * 业务过大时可细分
- */
 export default {
   /* user */
   login: 'user/login',
@@ -13,4 +9,3 @@ export default {
   query_barrages: 'canvas/queryBarrages',
   add_barrage: 'canvas/addBarrage',
 };
-
