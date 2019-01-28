@@ -76,7 +76,7 @@ export default {
         if (valid) {
           this.loading = true
           userLogin(this.loginForm).then((res) => {
-            setUsername(this.login.username.trim())
+            setUsername(this.loginForm.username.trim())
             this.$router.push({ path: this.redirect || "/" })
           }).catch((error) => {
             console.error(error)

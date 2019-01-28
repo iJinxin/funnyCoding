@@ -23,7 +23,7 @@ instance.interceptors.request.use((config) => {
   return config;
 }, error =>
   // 请求出错
-  Promise.reject(error),
+  Promise.reject(error)
 );
 
 /**

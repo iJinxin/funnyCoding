@@ -65,31 +65,25 @@ export default {
       }
     };
   },
-  created() {
-    // this.queryBarrages();
-  },
   mounted() {
     this.canvas = document.getElementById("canvas");
     this.video = document.getElementById("video");
-    this.queryBarrages();
+    queryBarrages().then(
+      res => {
+        this.barrages = res.data;
+        this.initBarrages(this.barrages);
+      },
+      () => {
+        this.$message.warning("获取弹幕失败");
+      }
+    );
   },
   methods: {
-    queryBarrages() {
-      $get(userApi.query_barrages).then(
-        res => {
-          this.barrages = res.data;
-          this.initBarrages(this.barrages);
-        },
-        () => {
-          this.$message.warning("获取弹幕失败");
-        }
-      );
-    },
     send() {
       this.barrage.time = this.video.currentTime;
       this.canvasBarrage.add(this.barrage);
-      this.value = "";
-      $post(userApi.add_barrage, this.barrage);
+      this.barrage.value = "";
+      addBarrage(this.barrage)
     },
     initBarrages() {
       this.canvasBarrage = new CanvasBarrage(
