@@ -15,7 +15,7 @@
             <el-submenu :index="item.index" :key="item.index">
               <template slot="title">
                 <i class="iconfont" :class="item.icon"></i>
-                <span>{{ item.name }}</span>
+                <span slot="title">{{ item.name }}</span>
               </template>
               <template v-for="sub in item.subItems">
                 <el-menu-item :index="sub.index" :key="sub.index">
@@ -83,23 +83,33 @@ export default {
   .el-submenu__title {
     height: 48px;
     line-height: 48px;
+    display: flex;
+    align-items: center;
     &:hover,
     &:focus {
       background: $darkish;
+    }
+    > i {
+      padding-right: 8px;
     }
   }
   .el-menu-item,
   .el-submenu {
     border-top: 1px solid #3d4957;
-    > i {
-      vertical-align: unset;
-    }
+  }
+  .el-menu-item * {
+    vertical-align: unset;
   }
 }
 .el-menu--vertical {
   .el-menu-item {
     height: 40px;
     line-height: 40px;
+    display: flex;
+    align-items: center;
+    > i {
+      padding-right: 8px;
+    }
   }
 }
 </style>
