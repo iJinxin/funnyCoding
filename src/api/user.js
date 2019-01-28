@@ -1,6 +1,15 @@
 // user module
-import Request from '@/utils/request'
+import request from '@/utils/request'
+import api from './api'
 
-export const Login = (username, password) => {
-
+export const userLogin = (userInfo) => {
+  const data = {
+    username: userInfo.username,
+    password: userInfo.password
+  }
+  return request({
+    url: api.login,
+    method: 'post',
+    data
+  })
 }

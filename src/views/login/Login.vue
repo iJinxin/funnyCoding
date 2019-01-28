@@ -25,7 +25,8 @@
   </div>
 </template>
 <script>
-import Cookies from "js-cookie"
+import { userLogin } from '@/api/user'
+import { setUsername } from '@/utils/cookies'
 
 export default {
   name: "Login",
@@ -73,10 +74,13 @@ export default {
     login(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          // a mock server will be created later
           this.loading = true
-          Cookies.set("username", this.login.username)
-          this.$router.push({ path: this.redirect || "/" })
+          userLogin(this.loginForm).then((res) => {
+            setUsername(this.login.username.trim())
+            this.$router.push({ path: this.redirect || "/" })
+          }).catch((error) => {
+            console.error(error)
+          })
         } else {
           return false
         }
