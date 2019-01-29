@@ -14,7 +14,7 @@ const routeMap = [
   {
     path: '',
     component: Layout,
-    redirect: 'dashboard',
+    redirect: 'funnycoding', // when dashboard finish, change back
     children: [
       {
         path: '/dashboard',
@@ -23,18 +23,6 @@ const routeMap = [
       }
     ],
   },
-  // {
-  //   path: '/about',
-  //   component: Layout,
-  //   redirect: '/about/',
-  //   children: [
-  //     {
-  //       path: '/',
-  //       name: 'About',
-  //       component: () => import('@/views/about/About')
-  //     }
-  //   ]
-  // },
   {
     path: '/login',
     name: 'Login',
