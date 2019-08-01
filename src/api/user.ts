@@ -1,14 +1,19 @@
 import request from '@/utils/request.js'
 
-export function login(data) {
+
+interface UserInfo {
+  username: string,
+  password: string
+}
+export function login(userInfo: UserInfo) {
   return request({
     url: "",
     method: "post",
-    data
+    userInfo
   })
 }
 
-export function logout(data) {
+export function logout(data: object) {
   return request({
     url: "",
     method: "post",

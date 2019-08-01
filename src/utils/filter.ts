@@ -1,8 +1,8 @@
 /**
  * 格式化过去某一时间到现在的时长
- * @param {yyyy-MM-dd} time 
+ * @param {时间戳} time 
  */
-export function timeAgo(time) {
+export function timeAgo(time: number) {
   let pasted = new Date(time).getTime();
   const between = (Date.now() - pasted) / 1000;
   if (between < 60) {
@@ -15,3 +15,11 @@ export function timeAgo(time) {
     return Math.round(between / 86400) + '天前'
   }
 };
+
+/**
+ * 几天前
+ * @param time yyyy-MM-dd
+ */
+export function daysAgo(time: string) {
+  
+}

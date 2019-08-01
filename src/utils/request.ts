@@ -1,14 +1,16 @@
-import axios from 'axios'
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 
-const service = axios.create({
+const baseConfig: AxiosRequestConfig = {
   baseURL: "",
   timeout: 5000
-})
+}
+const service: AxiosInstance = axios.create(baseConfig);
 
 // request interceptor
 service.interceptors.request.use(config => {
-
-}, error => {
+  // config.headers['x-projectkey'] = 1234
+  return config
+}, (error: any) => {
   return Promise.reject(error);
 });
 
