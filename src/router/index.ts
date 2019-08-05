@@ -1,16 +1,26 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Home from './views/Home.vue'
+
+// Layout
+import Layout from '@/views/layout/index.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'home',
-    //   component: Home
-    // },
+    {
+      path: '/',
+      component: Layout,
+      redirect: '/dashboard',
+      children: [
+        { 
+          path: '/dashboard',
+          component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
+          name: 'Dashboard',
+          meta: {}
+        }
+      ]
+    },
     // {
     //   path: '/about',
     //   name: 'about',
