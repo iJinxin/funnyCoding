@@ -1,5 +1,9 @@
 <template>
-  <div class="app-sidebar"></div>
+  <div class="app-sidebar">
+    <el-scrollbar>
+      <el-menu></el-menu>
+    </el-scrollbar>
+  </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
