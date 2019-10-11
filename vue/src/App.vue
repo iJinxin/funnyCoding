@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import elForm from './components/form/el-form.vue'
+import elForm from './components/form/index.vue'
 
 export default {
   name: 'app',
